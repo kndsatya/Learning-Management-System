@@ -4,7 +4,7 @@ class CourseService {
         this.courses = courses;
     }
     addCourse = course => {
-        if(course === null) {
+        if(course.title === "") {
             course = {
                 id: (new Date()).getTime(),
                 title: 'New Course'

@@ -1,0 +1,94 @@
+.nav-item-margin {
+    padding-left: 5px;
+    padding-right: 5px;
+}
+
+body{
+     background-color: #eeeeee ;
+}
+
+a { color: inherit; }
+
+a:visited { text-decoration: none; color:inherit; }
+a:hover { text-decoration: none; color:inherit; }
+a:focus { text-decoration: none; color:inherit; }
+a:hover, a:active { text-decoration: none; color:inherit }
+
+.header{
+    color: dimgrey;
+    font-weight: bold;
+    font-size: 20px;
+    margin-bottom: 15px;
+}
+
+.data{
+    background-color: white;
+}
+
+.calendar{
+    background-color: #eeeeee;
+    color: dimgrey;
+    font-weight: bold;
+    font-size: 20px;
+    margin-top: 15px;
+    max-bottom: 15px;
+}
+.fa-document-color {
+    color: #007bff;
+    background-color: white;
+}
+.fa-circle-color {
+    color: red
+}
+.sb-site-container {
+    background-color: #eeeeee;
+}
+.place-holder {
+    background-color: #4d88ff;
+    font-style: italic;
+    font-size: 1.2rem;
+}
+
+.form-control::-webkit-input-placeholder {
+    color: white;
+}
+
+.wd-bottom-right {
+    color: red;
+    position: fixed;
+    bottom: 10px;
+    right: 10px;
+    opacity: 0.5;
+}
+
+.wbdv-card-text {
+
+    display: inline-block;
+    width: 100%;
+    white-space: nowrap;
+    overflow: hidden !important;
+    text-overflow: ellipsis;
+}
+
+
+.wbdv-card-bottom {
+    margin-top: 10px;
+}
+
+/* WebKit, Blink, Edge */
+.form-control:-moz-placeholder {
+    color: white;
+}
+/* Mozilla Firefox 4 to 18 */
+.form-control::-moz-placeholder {
+    color: white;
+}
+/* Mozilla Firefox 19+ */
+.form-control:-ms-input-placeholder {
+    color: white;
+}
+/* Internet Explorer 10-11 */
+.form-control::-ms-input-placeholder {
+    color: white;
+}
+/* Microsoft Edge */
