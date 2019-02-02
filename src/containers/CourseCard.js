@@ -12,11 +12,9 @@ const CourseCard = ({course, deleteCourse}) =>
                 <h5 className="card-title wbdv-card-text">
                     {course.title}</h5>
                 <div className="form-group row">
-
-                <button
-                   className="btn btn-primary col-sm-6">
-                    <Link to={`/CourseEditor/${course.id}`}>Edit</Link>
-                </button>
+                    <Link to={`/CourseEditor/${course.id}`} className="btn btn-primary col-sm-6" role="btn">
+                    Edit
+                    </Link>
                 <button onClick={() => deleteCourse(course)}
                    className="btn btn-danger col-sm-6">Delete</button>
                 </div>
