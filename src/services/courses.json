@@ -9,11 +9,31 @@
         "lessons": [
           {
             "id": 1,
-            "title": "Lesson 1"
+            "title": "Syntax",
+            "topics" : [
+              {
+                "id" : 452,
+                "title" : "Topic 1"
+              },
+              {
+                "id" : 453,
+                "title" : "Topic 2"
+              }
+            ]
           },
           {
             "id": 2,
-            "title": "Lesson 2"
+            "title": "Selectors",
+            "topics" : [
+              {
+                "id" : 454,
+                "title" : "Topic 3"
+              },
+              {
+                "id" : 455,
+                "title" : "Topic 4"
+              }
+            ]
           }
         ]
       },
@@ -23,11 +43,17 @@
         "lessons": [
           {
             "id": 3,
-            "title": "Lesson 3"
-          },
-          {
-            "id": 4,
-            "title": "Lesson 4"
+            "title": "Lesson 3",
+            "topics" : [
+              {
+                "id" : 456,
+                "title" : "Topic 5"
+              },
+              {
+                "id" : 457,
+                "title" : "Topic 6"
+              }
+            ]
           }
         ]
       }
@@ -39,11 +65,29 @@
     "modules": [
       {
         "id": 3,
-        "title": "SQL"
+        "title": "SQL",
+        "lessons":[
+          {"id":"131313",
+            "title" : "Normalization",
+            "topics" : [{
+              "id":"1223",
+              "title":"mytopic"
+            }]
+          }
+        ]
       },
       {
         "id": 4,
-        "title": "JPA"
+        "title": "JPA",
+        "lessons":[
+          {"id":"1313",
+            "title" : "Normal",
+            "topics" : [{
+              "id":"122",
+              "title":"Some Topic"
+            }]
+          }
+        ]
       }
     ]
   },
@@ -53,11 +97,29 @@
     "modules": [
       {
         "id": 5,
-        "title": "Agile"
+        "title": "Agile",
+        "lessons":[
+          {"id":"131",
+            "title" : "No Title",
+            "topics" : [{
+              "id":"12122121",
+              "title":"yourtopic"
+            }]
+          }
+        ]
       },
       {
         "id": 6,
-        "title": "Testing"
+        "title": "Testing",
+        "lessons":[
+          {"id":"131313131313",
+            "title" : "QA",
+            "topics" : [{
+              "id":"12212312424244",
+              "title":"Test Topic"
+            }]
+          }
+        ]
       }
     ]
   }

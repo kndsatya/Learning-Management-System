@@ -5,6 +5,7 @@ import '../services/courses.json';
 import {library} from '@fortawesome/fontawesome-svg-core'
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome'
 import {faGripHorizontal, faFileAlt} from '@fortawesome/free-solid-svg-icons'
+import {BrowserRouter as Router,Link} from 'react-router-dom'
 import './CourseTable.css';
 
 library.add(faGripHorizontal, faFileAlt)
@@ -16,9 +17,10 @@ library.add(faGripHorizontal, faFileAlt)
 
                 <div className="row">
                     <div className="col-6">
-                        <a href="../Course-Editor/course-editor-template.client.html">
                             <FontAwesomeIcon icon="file-alt" className="fa-document-color fa-2x"/>
-                            {course.title}</a>
+                            <Link to={`/CourseEditor/${course.id}`}>
+                                {course.title}</Link>
+
                     </div>
                     <div className="col-2 d-none d-md-block">
                         me

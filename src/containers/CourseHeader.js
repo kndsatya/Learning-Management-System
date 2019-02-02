@@ -17,9 +17,26 @@ const CourseHeader = ({addCourse}) =>
               onClick={() => {
                   let newCourse = {
                       "id": Math.random(),
-                      "title": document.getElementById("course-name").value
+                      "title": document.getElementById("course-name").value,
+                      "modules": [{
+                          "id": Math.random(),
+                          "title":"New Module",
+                          "lessons" : [
+                              {
+                                  "id":Math.random(),
+                                  "title":"New Lesson",
+                                  "topics":[
+                                      {
+                                          "id":Math.random(),
+                                          "title" : "New Topic"
+                                      }
+                                  ]
+                              }
+                          ]
+                      }
+                      ]
                   }
-                  addCourse(newCourse)
+                  addCourse(newCourse);
               }}>
 <i className="fa fa-circle fa-stack-1x"></i>
 <i className="fa fa-plus fa-stack-1x fa-inverse"></i>

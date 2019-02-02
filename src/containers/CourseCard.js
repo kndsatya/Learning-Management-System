@@ -1,5 +1,6 @@
 import React from 'react'
 import './CourseTable.css'
+import {Link} from "react-router-dom";
 
 const CourseCard = ({course, deleteCourse}) =>
     <div className="col-sm-12 col-md-4 col-lg-2">
@@ -11,9 +12,10 @@ const CourseCard = ({course, deleteCourse}) =>
                 <h5 className="card-title wbdv-card-text">
                     {course.title}</h5>
                 <div className="form-group row">
+
                 <button
                    className="btn btn-primary col-sm-6">
-                    Edit
+                    <Link to={`/CourseEditor/${course.id}`}>Edit</Link>
                 </button>
                 <button onClick={() => deleteCourse(course)}
                    className="btn btn-danger col-sm-6">Delete</button>

@@ -4,7 +4,9 @@ import CourseService from '../services/CourseService'
 import CourseHeader from "./CourseHeader";
 import CourseTitleBar from './CourseTitleBar'
 import CourseGrid from './CourseGrid'
+import CourseEditor from './CourseEditor'
 import {BrowserRouter as Router, Route} from 'react-router-dom'
+
 class WhiteBoard extends Component {
     constructor() {
         super();
@@ -23,39 +25,44 @@ class WhiteBoard extends Component {
         this.setState({
                           courses: this.courseService.addCourse(course)
                       })
+
     render() {
 
         return (
 
-            <div className="sb-site-container">
-                  <CourseHeader addCourse={this.addCourse}/>
-
+            <div>
                 <Router>
                     <div>
-                      <Route path="/table"
-                             render={()=>{
-                                 return(<div>
-                                     <CourseTitleBar layout="List"/>
-                                     <CourseTable deleteCourse={this.deleteCourse}
-                                                  courses={this.state.courses}/>
-                                 </div>);
-                             }}/>
-                        <Route path="/grid"
-                               render={()=>{
-                                   return(<div>
-                                       <CourseTitleBar layout="Grid"/>
-                                       <CourseGrid deleteCourse={this.deleteCourse}
-                                                    courses={this.state.courses}/>
-                                   </div>);
-                               }}/>
-                        <Route path='/' exact
-                               render={()=>{
-                                   return(<div>
+                        <Route path="/table"
+                               render={() => {
+                                   return (<div className="sb-site-container">
+                                       <CourseHeader addCourse={this.addCourse}/>
                                        <CourseTitleBar layout="List"/>
                                        <CourseTable deleteCourse={this.deleteCourse}
                                                     courses={this.state.courses}/>
                                    </div>);
                                }}/>
+                        <Route path="/grid"
+                               render={() => {
+                                   return (<div className="sb-site-container">
+                                       <CourseHeader addCourse={this.addCourse}/>
+                                       <CourseTitleBar layout="Grid"/>
+                                       <CourseGrid deleteCourse={this.deleteCourse}
+                                                   courses={this.state.courses}/>
+                                   </div>);
+                               }}/>
+                        <Route path='/' exact
+                               render={() => {
+                                   return (<div>
+                                       <CourseHeader addCourse={this.addCourse}/>
+                                       <CourseTitleBar layout="List"/>
+                                       <CourseTable deleteCourse={this.deleteCourse}
+                                                    courses={this.state.courses}/>
+                                   </div>);
+                               }}/>
+                        <Route path="/CourseEditor/:id"
+                               exact
+                               component={CourseEditor}/>
                     </div>
                 </Router>
             </div>
