@@ -1,6 +1,6 @@
 import React from 'react'
 import './CourseTable.css'
-import CourseCard from "./CourseCard";
+import CourseCard from "../components/CourseCard";
 
         const CourseGrid = ({courses,deleteCourse}) =>
             <div className="container-fluid">

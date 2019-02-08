@@ -1,8 +1,8 @@
 import React from 'react'
 import '../../node_modules/bootstrap/dist/css/bootstrap.css'
 import '../../node_modules/font-awesome/css/font-awesome.min.css'
-import './CourseTable.css'
-import CourseRow from "./CourseRow";
+import '../components/CourseTable.css'
+import CourseRow from "../components/CourseRow";
 
 
 const CourseTable = ({courses,deleteCourse}) =>

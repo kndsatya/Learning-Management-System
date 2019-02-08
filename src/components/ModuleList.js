@@ -1,5 +1,5 @@
 import React from 'react'
-import './CourseEditor.css'
+import '../containers/CourseEditor.css'
 import ModuleListItem from "./ModuleListItem";
 
 class ModuleList extends React.Component {

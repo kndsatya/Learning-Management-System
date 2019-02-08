@@ -1,126 +1,105 @@
 [
   {
     "id": 123,
-    "title": "WebDev",
+    "title": "CS5610",
     "modules": [
       {
-        "id": 1,
-        "title": "jQuery",
+        "id": 123,
+        "title": "Week 1",
         "lessons": [
           {
             "id": 1,
-            "title": "Syntax",
-            "topics" : [
+            "title": "HTML",
+            "topics": [
               {
-                "id" : 452,
-                "title" : "Topic 1"
+                "id": 1,
+                "title": "DOM",
+                "widgets": [
+                  {
+                    "id": 1,
+                    "type": "HEADING",
+                    "size": 1,
+                    "text": "The Document Object Model"
+                  },
+                  {
+                    "id": 2,
+                    "type": "PARAGRAPH",
+                    "text": "This topic introduces the DOM"
+                  },
+                  {
+                    "id": 3,
+                    "type": "LIST",
+                    "items": "Nodes,Attributes,Tag names,IDs,Styles,Classes"
+                  },
+                  {
+                    "id": 4,
+                    "type": "IMAGE",
+                    "src": "https://picsum.photos/200"
+                  },
+                  {
+                    "id": 5,
+                    "type": "LINK",
+                    "title": "The DOM",
+                    "href": "https://en.wikipedia.org/wiki/Document_Object_Model"
+                  }
+                ]
               },
               {
-                "id" : 453,
-                "title" : "Topic 2"
+                "id": 2,
+                "title": "Tags",
+                "widgets": []
+              },
+              {
+                "id":3,
+                "title": "Attributes",
+                "widgets": []
               }
             ]
           },
           {
-            "id": 2,
-            "title": "Selectors",
-            "topics" : [
-              {
-                "id" : 454,
-                "title" : "Topic 3"
-              },
-              {
-                "id" : 455,
-                "title" : "Topic 4"
-              }
-            ]
+            "id":2,
+            "title": "CSS",
+            "topics": [{
+              "id":4,
+              "title":"BootStrap",
+              "widgets":[]
+            }]
           }
         ]
       },
       {
-        "id": 2,
-        "title": "React",
-        "lessons": [
-          {
-            "id": 3,
-            "title": "Lesson 3",
-            "topics" : [
-              {
-                "id" : 456,
-                "title" : "Topic 5"
-              },
-              {
-                "id" : 457,
-                "title" : "Topic 6"
-              }
-            ]
-          }
-        ]
+        "id":234,
+        "title": "Week 2",
+        "lessons": []
       }
     ]
   },
   {
     "id": 234,
-    "title": "Databases",
+    "title": "CS5200",
     "modules": [
       {
-        "id": 3,
-        "title": "SQL",
-        "lessons":[
-          {"id":"131313",
-            "title" : "Normalization",
-            "topics" : [{
-              "id":"1223",
-              "title":"mytopic"
-            }]
-          }
-        ]
-      },
-      {
-        "id": 4,
-        "title": "JPA",
-        "lessons":[
-          {"id":"1313",
-            "title" : "Normal",
-            "topics" : [{
-              "id":"122",
-              "title":"Some Topic"
-            }]
-          }
-        ]
-      }
-    ]
-  },
-  {
-    "id": 345,
-    "title": "Software Engineering",
-    "modules": [
-      {
-        "id": 5,
-        "title": "Agile",
-        "lessons":[
-          {"id":"131",
-            "title" : "No Title",
-            "topics" : [{
-              "id":"12122121",
-              "title":"yourtopic"
-            }]
-          }
-        ]
-      },
-      {
-        "id": 6,
-        "title": "Testing",
-        "lessons":[
-          {"id":"131313131313",
-            "title" : "QA",
-            "topics" : [{
-              "id":"12212312424244",
-              "title":"Test Topic"
-            }]
-          }
-        ]
-      }
+        "id": 345,
+        "title": "Week 3",
+        "lessons": [
+          {
+            "id": 1,
+            "title": "React",
+            "topics": [
+              {
+                "id": 1,
+                "title": "Router",
+                "widgets": [
+                  {
+                    "id": 1,
+                    "type": "HEADING",
+                    "size": 1,
+                    "text": "The Document Object Model"
+                  }
+                ]
+              }
+            ]
+          }]}
     ]
   }
 ]

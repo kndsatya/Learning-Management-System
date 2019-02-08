@@ -1,18 +1,25 @@
 import React from 'react'
-import EditorHeading from './EditorHeading'
+import EditorHeading from '../components/EditorHeading'
 import './CourseEditor.css'
 import CourseService from "../services/CourseService";
-import ModuleList from './ModuleList'
-import LessonTabs from "./LessonTabs";
-import TopicPills from "./TopicPills";
-import ModuleListItem from "./ModuleListItem";
-import HeadingWidget from "./HeadingWidget";
+import ModuleList from '../components/ModuleList'
+import LessonTabs from "../components/LessonTabs";
+import TopicPills from "../components/TopicPills";
+import ModuleListItem from "../components/ModuleListItem";
+import HeadingWidget from "../components/HeadingWidget";
+
+import WidgetListContainer from '../containers/WidgetListContainer'
+import widgetReducer from '../reducers/WidgetReducer'
+import {createStore} from 'redux'
+import {Provider} from 'react-redux'
+
+const store = createStore(widgetReducer);
 
 class CourseEditor extends React.Component {
 
     constructor(props) {
         super(props)
-        this.courseService = new CourseService()
+        this.courseService = new CourseService();
         const courseId = parseInt(props.match.params.id)
         let course = this.courseService.findCourseById(courseId)
         if(course===""){
@@ -284,6 +291,11 @@ class CourseEditor extends React.Component {
     }
 
     render() {
+           store.dispatch({
+            type: 'FIND_ALL_WIDGETS_FOR_TOPIC',
+            courseService : this.courseService,
+            topicId: this.state.selectedTopic.id
+                       })
 
         return (
             <div>
@@ -333,8 +345,11 @@ class CourseEditor extends React.Component {
                                 </div>
                             </div>
                             <br/>
+                            <br/>
                             <div>
-                                <HeadingWidget/>
+                                <Provider store={store}>
+                                    <WidgetListContainer/>
+                                </Provider>
                             </div>
 
                         </div>

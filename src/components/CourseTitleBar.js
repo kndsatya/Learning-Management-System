@@ -1,10 +1,10 @@
 import React from 'react'
 import '../../node_modules/bootstrap/dist/css/bootstrap.css'
-import './CourseTable.css'
+import '../components/CourseTable.css'
 import {library} from '@fortawesome/fontawesome-svg-core'
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome'
 import {faGripHorizontal, faFileAlt,faThList} from '@fortawesome/free-solid-svg-icons'
-import './CourseTable.css';
+import '../components/CourseTable.css';
 import {Link} from 'react-router-dom'
 
 library.add(faGripHorizontal, faFileAlt,faThList)

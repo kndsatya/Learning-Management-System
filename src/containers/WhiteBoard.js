@@ -1,9 +1,9 @@
 import React, {Component} from 'react'
-import CourseTable from './CourseTable'
+import CourseTable from '../components/CourseTable'
 import CourseService from '../services/CourseService'
-import CourseHeader from "./CourseHeader";
-import CourseTitleBar from './CourseTitleBar'
-import CourseGrid from './CourseGrid'
+import CourseHeader from "../components/CourseHeader";
+import CourseTitleBar from '../components/CourseTitleBar'
+import CourseGrid from '../components/CourseGrid'
 import CourseEditor from './CourseEditor'
 import {BrowserRouter as Router, Route} from 'react-router-dom'
 

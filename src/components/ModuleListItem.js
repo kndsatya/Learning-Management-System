@@ -1,5 +1,5 @@
 import React from 'react'
-import './CourseEditor.css'
+import '../containers/CourseEditor.css'
 import {library} from '@fortawesome/fontawesome-svg-core'
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome'
 import {faTrashAlt,faPencilAlt} from '@fortawesome/free-solid-svg-icons'

@@ -1,5 +1,5 @@
 import React from 'react'
-import './CourseEditor.css'
+import '../containers/CourseEditor.css'
 
 const EditorHeading = ({courseName}) =>
     <div className="container-fluid wbdv-course-name-header sticky-top">

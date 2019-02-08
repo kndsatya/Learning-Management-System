@@ -1,6 +1,6 @@
 import React from 'react'
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
-import './CourseEditor.css'
+import '../containers/CourseEditor.css'
 
 class LessonTabs extends React.Component {
 
