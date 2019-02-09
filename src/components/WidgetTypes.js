@@ -1,19 +1,23 @@
 import React from 'react'
+import '../containers/CourseEditor.css'
 
 
 
 
 
 
-
-
-const WidgetTypes = ({widget,updateWidget,deleteWidget}) =>
+const WidgetTypes = ({widget,updateWidget,deleteWidget,index,size,moveUp,moveDown}) =>
 
         <div>
-            <a href="#" className="btn-warning wbdev-uparrow">
-                <i className="fa fa-arrow-up"></i> </a>
-            <a href="#" className="btn-warning wbdev-down-arrow">
-                <i className="fa fa-arrow-down"></i></a>
+
+            {
+                index===0?<a></a>:
+            <i className="fa fa-arrow-up wbdev-uparrow btn-warning"
+               onClick={()=>{moveUp(widget)}}></i>}
+
+
+            {index===size-1?<a></a>:<i className="fa fa-arrow-down wbdev-down-arrow btn-warning"
+                                       onClick={()=>{moveDown(widget)}}></i>}
 
             <select name="heading"  onChange={(event) => {
 
@@ -83,9 +87,10 @@ const WidgetTypes = ({widget,updateWidget,deleteWidget}) =>
                     </option>
                 }
             </select>
-            <a href="#" onClick={()=>deleteWidget(widget)}> <i
-                className="fa fa-window-close ml-sm-2  wbdev-close-icon"></i>
-            </a>
+             <i
+                className="fa fa-window-close ml-sm-2  wbdev-close-icon" onClick={(event)=>
+
+                 deleteWidget(widget)}></i>
         </div>
 
 export default WidgetTypes;

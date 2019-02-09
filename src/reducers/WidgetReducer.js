@@ -24,10 +24,14 @@ const widgetReducer = (state, action) => {
         case 'DELETE_WIDGET':
 
             return {
-                 widgets: state.widgets.filter(widget => widget.id !== action.widget.id)
+                 widgets: state.widgets.filter(widget => widget.id !== action.widget.id),
+                courseService: state.courseService,
+                topicId: state.topicId,
+                preview: state.preview
             }
 
         case 'CREATE_WIDGET':
+
 
             const widget = {
                 id: Math.random(),
@@ -40,7 +44,10 @@ const widgetReducer = (state, action) => {
                 widgets: [
                     ...state.widgets,
                     widget
-                ]
+                ],
+                courseService: state.courseService,
+                topicId: state.topicId,
+                preview: state.preview
             }
 
         case 'UPDATE_WIDGET':
@@ -48,18 +55,68 @@ const widgetReducer = (state, action) => {
             return {
                 widgets: state.widgets.map(widget =>
                                                widget.id === action.widget.id ? action.widget : widget
-                )
+                ),
+                courseService: state.courseService,
+                topicId: state.topicId,
+                preview: state.preview
             }
 
         case 'FIND_WIDGET' : return{
-            widget : state.widgets.find(widget => widget.id === action.widget.id)
+            widget : state.widgets.find(widget => widget.id === action.widget.id),
+            courseService: state.courseService,
+            topicId: state.topicId,
+            preview: state.preview
         }
 
         case 'FIND_ALL_WIDGETS_FOR_TOPIC' :
             return {
-            widgets : action.courseService.findWidgets(action.topicId)
+            widgets : action.courseService.findWidgets(action.topicId),
+            courseService : action.courseService,
+            topicId: action.topicId,
+            preview:action.preview
         }
 
+        case 'MOVE_UP':
+            const index = state.widgets.indexOf(action.widget);
+            const upperWidget = state.widgets[index-3]
+            state.widgets[index-3] = state.widgets[index]
+            state.widgets[index] = upperWidget
+            return {
+               widgets:[...state.widgets],
+                courseService: state.courseService,
+                topicId: state.topicId,
+                preview: state.preview
+            }
+
+        case 'MOVE_DOWN':
+            const downIndex= state.widgets.indexOf(action.widget);
+            const downWidget = state.widgets[downIndex+3]
+            state.widgets[downIndex+3] = state.widgets[downIndex]
+            state.widgets[downIndex] = downWidget
+            return {
+                widgets:[...state.widgets],
+                courseService: state.courseService,
+                topicId: state.topicId,
+                preview: state.preview
+            }
+
+        case 'TOGGLE_PREVIEW':
+
+              const preview = state.preview?false:true
+            return{
+                  preview:preview,
+                  widgets: [...state.widgets],
+                courseService: state.courseService,
+                topicId: state.topicId
+            }
+        case 'SAVE':
+            console.log(state.courseService)
+               return {
+                     widgets: state.courseService.saveWidgets(state.topicId,state.widgets),
+                     courseService: state.courseService,
+                     topicId: state.topicId,
+                     preview : state.preview
+               }
 
         default:
             return state;

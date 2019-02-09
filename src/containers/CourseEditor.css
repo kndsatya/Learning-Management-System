@@ -86,7 +86,7 @@ input[type="text"], textarea {
 }
 
 .wbdv-widget-list {
-    margin-top: 30px;
+    margin-top: 0px;
     border: 1px solid;
     border-color: lightgray;
     padding-top: 10px;
@@ -95,6 +95,11 @@ input[type="text"], textarea {
 
 .wdv-close-square {
     color: orangered;
+}
+
+.wbdv-add-square{
+    color:orangered;
+    cursor: pointer;
 }
 
 .no-gutter > [class*='col-'] {
@@ -107,16 +112,28 @@ input[type="text"], textarea {
     margin:10px;
 }
 
+.save{
+    padding-down:0px;
+}
+
+.preview{
+    cursor: pointer;
+}
+
 .wbdev-uparrow{
     padding-left: 3px;margin-right:10px;
+    padding-right: 3px;
+    cursor:pointer
 }
 
 .wbdev-down-arrow{
-    padding-left: 3px;padding-right: 3px;margin-right:10px
+    padding-left: 3px;padding-right: 3px;margin-right:10px;
+    cursor:pointer;
 }
 
 .wbdev-close-icon{
-    color:inherit
+    color:orangered;
+    cursor:pointer;
 }
 
 .wbdev-input-text{

@@ -22,9 +22,9 @@ class CourseEditor extends React.Component {
         this.courseService = new CourseService();
         const courseId = parseInt(props.match.params.id)
         let course = this.courseService.findCourseById(courseId)
-        if(course===""){
-            for(var i=0;i<props.courses.length;i++) {
-                if(courseId===props.courses[i].id) {
+        if (course === "") {
+            for (var i = 0; i < props.courses.length; i++) {
+                if (courseId === props.courses[i].id) {
                     course = props.courses[i]
                 }
             }
@@ -34,9 +34,9 @@ class CourseEditor extends React.Component {
             modules: course.modules,
             lessons: course.modules[0].lessons,
             topics: course.modules[0].lessons[0].topics,
-            selectedModule : course.modules[0],
-            selectedLesson : course.modules[0].lessons[0],
-            selectedTopic : course.modules[0].lessons[0].topics[0],
+            selectedModule: course.modules[0],
+            selectedLesson: course.modules[0].lessons[0],
+            selectedTopic: course.modules[0].lessons[0].topics[0],
             shouldModuleEdit: false,
             moduleToBeEdited: NaN,
             shouldLessonEdit: false,
@@ -49,9 +49,9 @@ class CourseEditor extends React.Component {
     createModule = () => {
 
         let title;
-        if(document.getElementById("module-input").value === ""){
+        if (document.getElementById("module-input").value === "") {
             title = "New Module"
-        } else{
+        } else {
             title = document.getElementById("module-input").value
         }
         this.setState({
@@ -59,14 +59,14 @@ class CourseEditor extends React.Component {
                               ...this.state.modules, {
                                   title: title,
                                   id: Math.random(),
-                                  lessons:[
+                                  lessons: [
                                       {
-                                           id: Math.random(),
+                                          id: Math.random(),
                                           title: "New Lesson",
-                                          topics:[
+                                          topics: [
                                               {
-                                                  id:Math.random(),
-                                                  title:"New Topic"
+                                                  id: Math.random(),
+                                                  title: "New Topic"
                                               }
                                           ]
                                       }
@@ -81,18 +81,18 @@ class CourseEditor extends React.Component {
     createLesson = () => {
 
         let title;
-        if(document.getElementById("LessonInput").value === "") {
+        if (document.getElementById("LessonInput").value === "") {
             title = "New Lesson"
-        }else{
+        } else {
             title = document.getElementById("LessonInput").value
         }
         let lesson = {
             title: title,
             id: Math.random(),
-            topics:[
+            topics: [
                 {
-                    id:Math.random(),
-                    title:"New Topic"
+                    id: Math.random(),
+                    title: "New Topic"
                 }
             ]
         }
@@ -102,7 +102,7 @@ class CourseEditor extends React.Component {
 
         this.setState({
                           lessons: lessons,
-                          shouldLessonEdit : false
+                          shouldLessonEdit: false
                       })
 
         document.getElementById("LessonInput").value = ""
@@ -111,9 +111,9 @@ class CourseEditor extends React.Component {
     createTopic = () => {
 
         let title;
-        if(document.getElementById("TopicInput").value==="") {
+        if (document.getElementById("TopicInput").value === "") {
             title = "New Topic"
-        } else{
+        } else {
             title = document.getElementById("TopicInput").value
         }
         let topic = {
@@ -122,7 +122,7 @@ class CourseEditor extends React.Component {
         }
 
         let topics = this.state.topics
-         topics.push(topic)
+        topics.push(topic)
         this.setState({
                           topics: topics,
                           shouldTopicEdit: false
@@ -142,15 +142,15 @@ class CourseEditor extends React.Component {
 
     deleteLesson = (lessonToDelete) => {
 
-        for(var i=0;i<this.state.lessons.length;i++) {
-            if(this.state.lessons[i]===lessonToDelete) {
-                this.state.lessons.splice(i,1)
+        for (var i = 0; i < this.state.lessons.length; i++) {
+            if (this.state.lessons[i] === lessonToDelete) {
+                this.state.lessons.splice(i, 1)
             }
         }
 
         this.setState({
-                         lessons:this.state.lessons,
-                         shouldLessonEdit : false
+                          lessons: this.state.lessons,
+                          shouldLessonEdit: false
 
                       })
 
@@ -158,15 +158,15 @@ class CourseEditor extends React.Component {
 
     deleteTopic = (topicToDelete) => {
 
-        for(var i=0;i<this.state.topics.length;i++) {
-            if(this.state.topics[i]===topicToDelete) {
-                this.state.topics.splice(i,1)
+        for (var i = 0; i < this.state.topics.length; i++) {
+            if (this.state.topics[i] === topicToDelete) {
+                this.state.topics.splice(i, 1)
             }
         }
 
         this.setState({
-                        topics : this.state.topics,
-                        shouldTopicEdit : false
+                          topics: this.state.topics,
+                          shouldTopicEdit: false
                       })
 
     }
@@ -251,19 +251,19 @@ class CourseEditor extends React.Component {
     selectModule = (module) => {
         let selectedLesson;
         let selectedTopic;
-        if(module.lessons.length!==0){
+        if (module.lessons.length !== 0) {
             selectedLesson = module.lessons[0]
-            if(module.lessons[0].topics.length > 0) {
+            if (module.lessons[0].topics.length > 0) {
                 selectedTopic = module.lessons[0].topics[0]
             }
         }
 
         this.setState({
                           lessons: module.lessons,
-                          topics : module.lessons[0].topics,
-                          selectedModule : module,
-                          selectedLesson : selectedLesson,
-                          selectedTopic : selectedTopic
+                          topics: module.lessons[0].topics,
+                          selectedModule: module,
+                          selectedLesson: selectedLesson,
+                          selectedTopic: selectedTopic
                       })
 
     }
@@ -271,30 +271,30 @@ class CourseEditor extends React.Component {
     selectLesson = (lesson) => {
 
         let selectedTopic;
-      if(lesson.topics.length > 0) {
+        if (lesson.topics.length > 0) {
             selectedTopic = lesson.topics[0]
-          console.log(selectedTopic)
+            console.log(selectedTopic)
         }
         this.setState({
-                          topics : lesson.topics,
-                          selectedLesson : lesson,
-                          selectedTopic : selectedTopic
+                          topics: lesson.topics,
+                          selectedLesson: lesson,
+                          selectedTopic: selectedTopic
                       })
     }
-
 
     selectTopic = (topic) => {
 
         this.setState({
-                          selectedTopic : topic
+                          selectedTopic: topic
                       })
     }
 
     render() {
-           store.dispatch({
-            type: 'FIND_ALL_WIDGETS_FOR_TOPIC',
-            courseService : this.courseService,
-            topicId: this.state.selectedTopic.id
+        store.dispatch({
+                           type: 'FIND_ALL_WIDGETS_FOR_TOPIC',
+                           courseService: this.courseService,
+                           topicId: this.state.selectedTopic.id,
+                           preview:false
                        })
 
         return (
@@ -310,7 +310,7 @@ class CourseEditor extends React.Component {
                                         updateModule={this.updateModule}
                                         shouldEdit={this.state.shouldModuleEdit}
                                         selectModule={this.selectModule}
-                                        selectedModule = {this.state.selectedModule}/>
+                                        selectedModule={this.state.selectedModule}/>
                         </div>
                     </div>
                     <div className="col-10">
@@ -332,29 +332,19 @@ class CourseEditor extends React.Component {
                                             updateTopic={this.updateTopic}
                                             createTopic={this.createTopic}
                                             shouldEdit={this.state.shouldTopicEdit}
-                                            selectTopic = {this.selectTopic}
-                                            selectedTopic = {this.state.selectedTopic}/>
+                                            selectTopic={this.selectTopic}
+                                            selectedTopic={this.state.selectedTopic}/>
                             </div>
 
-                            <div>
-                                <div className="saveNpreview form-group row">
-                                    <button className="btn btn-success mr-sm-4" id="save">Save</button>
-                                    &nbsp;
-                                    <h3>Preview &nbsp;</h3><a href="#"><i
-                                    className="fa fa-toggle-off fa-2x"></i></a>
-                                </div>
-                            </div>
-                            <br/>
-                            <br/>
                             <div>
                                 <Provider store={store}>
                                     <WidgetListContainer/>
                                 </Provider>
                             </div>
-
                         </div>
                     </div>
                 </div>
+
             </div>
 
         );

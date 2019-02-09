@@ -16,27 +16,32 @@
                 "title": "DOM",
                 "widgets": [
                   {
+                    "name": "DOM heading",
                     "id": 1,
                     "type": "HEADING",
                     "size": 1,
                     "text": "The Document Object Model"
                   },
                   {
+                    "name": "DOM Paragraph",
                     "id": 2,
                     "type": "PARAGRAPH",
                     "text": "This topic introduces the DOM"
                   },
                   {
+                    "name": "DOM List",
                     "id": 3,
                     "type": "LIST",
                     "items": "Nodes,Attributes,Tag names,IDs,Styles,Classes"
                   },
                   {
+                    "name": "DOM Image",
                     "id": 4,
                     "type": "IMAGE",
                     "src": "https://picsum.photos/200"
                   },
                   {
+                    "name": "DOM Link",
                     "id": 5,
                     "type": "LINK",
                     "title": "The DOM",

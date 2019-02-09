@@ -57,6 +57,22 @@ class CourseService {
         return null;
     }
 
+    saveWidgets=(topicId,widgets)=>{
+
+        for(const module of this.courses.modules){
+            for(const lesson of module.lessons){
+                for(const topic of lesson.topics){
+                    if(topic.id==topicId){
+                        topic.widgets=[]
+                        topic.widgets=[...widgets]
+                        return topic.widgets
+                    }
+                }
+            }
+        }
+        return null;
+    }
+
     findWidget=(widgetId)=>{
 
 
