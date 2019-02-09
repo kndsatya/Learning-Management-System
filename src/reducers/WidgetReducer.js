@@ -59,6 +59,7 @@ const widgetReducer = (state, action) => {
                 courseService: state.courseService,
                 topicId: state.topicId,
                 preview: state.preview
+
             }
 
         case 'FIND_WIDGET' : return{
@@ -78,8 +79,8 @@ const widgetReducer = (state, action) => {
 
         case 'MOVE_UP':
             const index = state.widgets.indexOf(action.widget);
-            const upperWidget = state.widgets[index-3]
-            state.widgets[index-3] = state.widgets[index]
+            const upperWidget = state.widgets[index-1]
+            state.widgets[index-1] = state.widgets[index]
             state.widgets[index] = upperWidget
             return {
                widgets:[...state.widgets],
@@ -90,8 +91,8 @@ const widgetReducer = (state, action) => {
 
         case 'MOVE_DOWN':
             const downIndex= state.widgets.indexOf(action.widget);
-            const downWidget = state.widgets[downIndex+3]
-            state.widgets[downIndex+3] = state.widgets[downIndex]
+            const downWidget = state.widgets[downIndex+1]
+            state.widgets[downIndex+1] = state.widgets[downIndex]
             state.widgets[downIndex] = downWidget
             return {
                 widgets:[...state.widgets],
@@ -110,7 +111,6 @@ const widgetReducer = (state, action) => {
                 topicId: state.topicId
             }
         case 'SAVE':
-            console.log(state.courseService)
                return {
                      widgets: state.courseService.saveWidgets(state.topicId,state.widgets),
                      courseService: state.courseService,

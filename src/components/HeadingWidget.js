@@ -25,41 +25,47 @@ const HeadingWidget = ({widget,updateWidget,deleteWidget,index,size,moveUp,moveD
                         }}/>
              </div>
              <div className="form-group">
-                 <select name="role" id="role"
-                         className="custom-select mr-sm-2 wbdv-heading-dropdown">
+                 <select
+                     onChange={(event)=>{
+                         widget.size = parseInt(event.target.value)
+                         updateWidget(widget)
+                     }
+                     }
+                     name="role" id="role"
+                         className="custom-select mr-sm-2 wbdv-heading-dropdown" >
 
                      {
-                         widget.size === 1? <option value="HEADING 1" selected>
+                         widget.size === 1? <option value="1" selected>
                              Heading 1
-                         </option> :  <option value="HEADING 1">
+                         </option> :  <option value="1">
                              Heading 1
                          </option>
                      }
 
-                     {widget.size === 2 ?   <option value="HEADING 2" selected>
+                     {widget.size === 2 ?   <option value="2" selected>
                          Heading 2
-                     </option> :   <option value="HEADING 2">
+                     </option> :   <option value="2">
                           Heading 2
                       </option>
                      }
 
-                     {widget.size === 3 ?   <option value="HEADING 3" selected>
+                     {widget.size === 3 ?   <option value="3" selected>
                          Heading 3
-                     </option> :   <option value="HEADING 3">
+                     </option> :   <option value="3">
                           Heading 3
                       </option>
                      }
 
-                     {widget.size === 4?   <option value="HEADING 4" selected>
+                     {widget.size === 4?   <option value="4" selected>
                          Heading 4
-                     </option> :   <option value="HEADING 4">
+                     </option> :   <option value="4">
                           Heading 4
                       </option>
                      }
 
-                     {widget.size === 5 ?   <option value="HEADING 5" selected>
+                     {widget.size === 5 ?   <option value="5" selected>
                          Heading 5
-                     </option> :   <option value="HEADING 5">
+                     </option> :   <option value="5">
                           Heading 5
                       </option>
                      }

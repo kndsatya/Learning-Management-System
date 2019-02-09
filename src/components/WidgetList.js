@@ -11,8 +11,8 @@ const WidgetList = ({widgets, addWidget, deleteWidget, updateWidget,moveUp,moveD
                   onClick={()=>save()}>Save
                 </button>
                 &nbsp;
-                <h3>Preview &nbsp;</h3><i
-                className="fa fa-toggle-off fa-2x preview"onClick={()=>togglePreview()}></i>
+                <h3>Preview &nbsp;</h3>{preview?<i className="fa fa-toggle-on fa-2x preview" onClick={()=>togglePreview()}></i>:<i
+                className="fa fa-toggle-off fa-2x preview"onClick={()=>togglePreview()}></i>}
             </div>
         </div>
         <br/>

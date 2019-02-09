@@ -32,7 +32,8 @@
                     "name": "DOM List",
                     "id": 3,
                     "type": "LIST",
-                    "items": "Nodes,Attributes,Tag names,IDs,Styles,Classes"
+                    "ordered":false,
+                    "items": ["Nodes"]
                   },
                   {
                     "name": "DOM Image",
@@ -44,7 +45,7 @@
                     "name": "DOM Link",
                     "id": 5,
                     "type": "LINK",
-                    "title": "The DOM",
+                    "linkText": "The DOM",
                     "href": "https://en.wikipedia.org/wiki/Document_Object_Model"
                   }
                 ]
