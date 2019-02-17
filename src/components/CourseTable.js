@@ -5,13 +5,15 @@ import '../components/CourseTable.css'
 import CourseRow from "../components/CourseRow";
 
 
+
+
 const CourseTable = ({courses,deleteCourse}) =>
 
            <div className="container data">
 
                {
                    courses.map((course)=> {
-                                                 return(<CourseRow course={course}
+                                                 return(<CourseRow key={course.id} course={course}
                                                                 deleteCourse={deleteCourse}/>)
                                              }
                    )

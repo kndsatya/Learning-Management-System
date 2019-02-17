@@ -10,40 +10,54 @@ class TopicPills extends React.Component {
 
     render() {
 
-
         let inputBox;
 
-        if(this.props.shouldEdit){
+        if (this.props.shouldEdit) {
 
             inputBox =
-                <li className="form-inline mx-1">
+            this.props.numberOfLessons!==0?    <li className="form-inline mx-1">
                     <input type="text" className="form-control col-sm-5" id="TopicInput"
                            placeholder="New Lesson"/>
-                    <button type="submit" className="btn btn-success col-sm-5"
+                    <button className="btn btn-success col-sm-5"
                             onClick={this.props.updateTopic}>Update Topic
                     </button>
-                </li>
+                </li>:<li></li>
         } else {
-            inputBox =
-                <li className="form-inline mx-1">
+            inputBox = this.props.numberOfLessons!==0?
+                       <li className="form-inline mx-1">
                     <input type="text" className="form-control col-sm-5" id="TopicInput"
                            placeholder="New Topic"/>
-                    <button type="submit" className="btn btn-success col-sm-5"
+                    <button className="btn btn-success col-sm-5"
                             onClick={this.props.createTopic}>Add Topic
                     </button>
-                </li>
+                </li>:<li></li>
+        }
+
+        const topicStyle = {
+            border: "1px solid"
+
         }
 
         return (<ul className="nav nav-pills">
             {
                 this.props.topics.map(topic =>
-                                          <li key={topic.id} className="nav-item" onClick={()=>{this.props.selectTopic(topic)}}>
-                                              <a className={topic===this.props.selectedTopic?"nav-link active":"nav-link"}
-                                                 href="#">{topic.title}&nbsp;&nbsp;&nbsp;
-                                                  <FontAwesomeIcon onClick={() => this.props.deleteTopic(topic)}
-                                                                   icon="trash-alt"/>
-                                                  <FontAwesomeIcon onClick={() => this.props.editTopic(topic)}
-                                                                   icon="pencil-alt"/>
+                                          <li key={topic.id} className="nav-item" onClick={() => {
+                                              this.props.selectTopic(topic)
+                                          }}>
+                                              <a className={JSON.stringify(topic)
+                                                            === JSON.stringify(
+                                                  this.props.selectedTopic)
+                                                            ? "nav-link active wbdv-button"
+                                                            : "nav-link wbdv-button"}
+                                                 style={topicStyle}
+                                                 role="btn">{topic.topicName}&nbsp;&nbsp;&nbsp;
+                                                  <FontAwesomeIcon
+                                                      onClick={() => this.props.deleteTopic(
+                                                          topic.id)}
+                                                      icon="trash-alt"/>
+                                                  <FontAwesomeIcon
+                                                      onClick={() => this.props.editTopic(topic)}
+                                                      icon="pencil-alt"/>
 
                                               </a>
                                           </li>

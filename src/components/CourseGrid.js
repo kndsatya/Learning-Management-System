@@ -9,6 +9,7 @@ import CourseCard from "../components/CourseCard";
                     {
                         courses.map((course)=> {
                                                    return(<CourseCard course={course}
+                                                                      key={course.id}
                                                                       deleteCourse={deleteCourse}/>)
                                                }
                         )

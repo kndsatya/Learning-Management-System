@@ -1,32 +1,50 @@
-import courses from './courses.json'
-let instance = null;
 class CourseService {
+
     constructor() {
-        this.courses = courses;
+
     }
+
     addCourse = course => {
-        if(course.title === "") {
-            course = {
-                id: (new Date()).getTime(),
-                title: 'New Course'
-            }
-        }
-        this.courses.push(course)
-        return this.courses
+        return fetch("http://localhost:8081/api/courses",{
+            credentials:'include',
+            method:'post',
+            headers:{
+                "Accept" : "application/json",
+                "Content-Type" : "application/json"
+            },
+            body: JSON.stringify(course)
+        }).then(response=>{
+                return response.json()
+            })
     }
 
-    findCourseById = courseId =>
-        this.courses = this.courses.find(
-            course => course.id === courseId
-        )
 
-    findAllCourses = () =>
-        this.courses;
 
-    deleteCourse = deleteCourse =>
-        this.courses = this.courses.filter(
-            course => course.id !== deleteCourse.id
-        )
+    findCourseById = (courseId)=>{
+        let findCourseByIdURL = "http://localhost:8081/api/courses/"+courseId
+        return fetch(findCourseByIdURL,{
+            credentials:'include'
+        }).then(response=>{return response.json()})
+    }
+
+    findAllCourses=()=>{
+        return fetch("http://localhost:8081/api/courses",{
+            credentials:'include'
+        })
+            .then(response=>{
+                return response.json()});
+    }
+
+    deleteCourse = courseId =>{
+
+        let deleteCourseAPI = "http://localhost:8081/api/courses/" + courseId
+        return fetch(deleteCourseAPI,{
+            method:"delete",
+            credentials:'include'
+        }).then(
+            response => response.json()
+         )
+    }
 
    createWidget = (topicId, widget) => {
 

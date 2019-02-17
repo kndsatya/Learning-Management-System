@@ -25,6 +25,9 @@ a:hover, a:active { text-decoration: none; color:inherit }
     background-color: white;
 }
 
+.wbdv-button{
+    cursor: pointer;
+}
 .calendar{
     background-color: #eeeeee;
     color: dimgrey;
@@ -38,7 +41,7 @@ a:hover, a:active { text-decoration: none; color:inherit }
     background-color: white;
 }
 .fa-circle-color {
-    color: red
+    color: red;
 }
 .sb-site-container {
     background-color: #eeeeee;

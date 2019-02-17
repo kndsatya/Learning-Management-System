@@ -19,11 +19,11 @@ library.add(faGripHorizontal, faFileAlt)
                     <div className="col-6">
                             <FontAwesomeIcon icon="file-alt" className="fa-document-color fa-2x"/>
                             <Link to={`/CourseEditor/${course.id}`}>
-                                {course.title}</Link>
+                                {course.courseName}</Link>
 
                     </div>
                     <div className="col-2 d-none d-md-block">
-                        me
+                        {course.author.username}
                     </div>
 
                     <div className="col-2 d-none d-md-block">
@@ -31,12 +31,11 @@ library.add(faGripHorizontal, faFileAlt)
                     </div>
 
                     <div className="col-2 d-none d-md-block">
-                        <a href="#" onClick={()=> {deleteCourse(course)}}>
+                        <a  role="btn" onClick={()=> {deleteCourse(course.id)}}>
                             <i className="fa fa-times float-right" aria-hidden="true"></i>
                         </a>
                     </div>
                 </div>
-
                 <div>
                     <hr/>
                 </div>

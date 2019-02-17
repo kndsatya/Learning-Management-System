@@ -13,33 +13,19 @@ const CourseHeader = ({addCourse}) =>
                    placeholder="New Course Title"/>
         </div>
 
-        <span className="fa-stack fa-2x fa-circle-color nav-item-margin btn"
+        <span className="fa-stack nav-item-margin wbdv-button" role="btn"
               onClick={() => {
                   let newCourse = {
-                      "id": Math.random(),
-                      "title": document.getElementById("course-name").value,
-                      "modules": [{
-                          "id": Math.random(),
-                          "title":"New Module",
-                          "lessons" : [
-                              {
-                                  "id":Math.random(),
-                                  "title":"New Lesson",
-                                  "topics":[
-                                      {
-                                          "id":Math.random(),
-                                          "title" : "New Topic"
-                                      }
-                                  ]
-                              }
-                          ]
-                      }
-                      ]
+                      "courseName": document.getElementById("course-name").value
                   }
+                  if(newCourse.courseName===""){
+                      newCourse.courseName="New Course"
+                  }
+                  document.getElementById("course-name").value=""
                   addCourse(newCourse);
               }}>
-<i className="fa fa-circle fa-stack-1x"></i>
-<i className="fa fa-plus fa-stack-1x fa-inverse"></i>
+<i className="fa fa-circle fa-stack-2x fa-circle-color"></i>
+<i className="fa fa-plus fa-stack-2x fa-inverse"></i>
 </span>
     </nav>
 

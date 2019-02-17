@@ -10,12 +10,12 @@ const CourseCard = ({course, deleteCourse}) =>
         alt="Course view"/>
             <div className="card-body">
                 <h5 className="card-title wbdv-card-text">
-                    {course.title}</h5>
+                    {course.courseName}</h5>
                 <div className="form-group row">
                     <Link to={`/CourseEditor/${course.id}`} className="btn btn-primary col-sm-6" role="btn">
                     Edit
                     </Link>
-                <button onClick={() => deleteCourse(course)}
+                <button onClick={() => deleteCourse(course.id)}
                    className="btn btn-danger col-sm-6">Delete</button>
                 </div>
             </div>
