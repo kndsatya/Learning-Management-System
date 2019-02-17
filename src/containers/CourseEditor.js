@@ -239,10 +239,16 @@ class CourseEditor extends React.Component {
             if(modules.length!==0){
                 selectedModule = modules[0]
             }
+            if(modules.length==0){
+                this.state.lessons=[]
+                this.state.topics=[]
+            }
             this.setState({
                               modules: modules,
                               shouldModuleEdit: false,
-                              selectedModule:selectedModule
+                              selectedModule:selectedModule,
+                              lessons:this.state.lessons,
+                              topics:this.state.topics
                           })
             if(modules.length!==0){
                 this.selectModule(selectedModule)
@@ -260,10 +266,14 @@ class CourseEditor extends React.Component {
                 if(lessons.length!==0){
                     selectedLesson = lessons[0]
                 }
+                if(lessons.length==0){
+                    this.state.topics=[]
+                }
                 this.setState({
                                   lessons: lessons,
                                   shouldLessonEdit: false,
-                                  selectedLesson:selectedLesson
+                                  selectedLesson:selectedLesson,
+                                  topics:this.state.topics
                               })
                 if(lessons.length!==0){
                     this.selectLesson(selectedLesson)
