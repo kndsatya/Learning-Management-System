@@ -1,11 +1,14 @@
 import React from 'react';
 
-const Profile = () =>
+const Profile = ({getLoginUser}) =>
+
+{
+    const loginUser = getLoginUser()
+    return(
     <div>
         <div className="container">
             <h1>Profile</h1>
             <form>
-
                 <div className="form-group row">
                     <label className="col-sm-2 col-form-label"></label>
                     <div className="col-sm-10 alert alert-success alert-dismissible fade show"
@@ -23,7 +26,7 @@ const Profile = () =>
                     <div className="col-sm-10">
                         <input className="form-control"
                                id="username"
-                               value="Satya"
+                               defaultValue={loginUser.username}
                                readOnly/>
                     </div>
                 </div>
@@ -33,6 +36,7 @@ const Profile = () =>
                     <div className="col-sm-10">
                         <input className="form-control"
                                id="phone"
+                               defaultValue={loginUser.phone}
                                placeholder="(555) 123-4324"/>
                     </div>
                 </div>
@@ -44,6 +48,7 @@ const Profile = () =>
                         <input className="form-control"
                                id="email"
                                type="email"
+                               defaultValue={loginUser.email}
                                placeholder="jon@husky.neu.edu"/>
                     </div>
                 </div>
@@ -53,15 +58,31 @@ const Profile = () =>
                     <label className="col-sm-2 col-form-label" htmlFor="role">Role</label>
                     <div className="col-sm-10">
                         <select name="role" id="role" className="custom-select mr-sm-2">
-                            <option value="FACULTY">
-                                Faculty
-                            </option>
-                            <option value="STUDENT">
-                                Student
-                            </option>
-                            <option value="ADMIN">
-                                Admin
-                            </option>
+                            {
+                                loginUser.role==="FACULTY"?<option
+                                                                     value="FACULTY" selected>
+                                                                        Faculty
+                                                                     </option>:
+                                <option
+                                    value="FACULTY">
+                                    Faculty
+                                </option>
+                            }
+                            {
+                               loginUser.role==="STUDENT"?   <option value="STUDENT" selected>
+                                   Student
+                               </option> :   <option value="STUDENT">
+                                   Student
+                               </option>
+                            }
+                            {
+                              loginUser.role==="ADMIN"?<option value="ADMIN" selected>
+                                  Admin
+                              </option>:<option value="ADMIN">
+                                  Admin
+                              </option>
+                            }
+
                         </select>
                     </div>
                 </div>
@@ -72,6 +93,7 @@ const Profile = () =>
                         <input className="form-control"
                                id="dob"
                                type="date"
+                               defaultValue={loginUser.dateOfBirth}
                                placeholder="mm/dd/yyyy"/>
                     </div>
                 </div>
@@ -93,6 +115,6 @@ const Profile = () =>
 
             </form>
         </div>
-    </div>
+    </div>)}
 
 export default Profile;
