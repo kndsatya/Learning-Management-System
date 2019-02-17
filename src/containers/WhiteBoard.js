@@ -6,6 +6,9 @@ import CourseTitleBar from '../components/CourseTitleBar'
 import CourseGrid from '../components/CourseGrid'
 import CourseEditor from './CourseEditor'
 import {BrowserRouter as Router, Route} from 'react-router-dom'
+import Login from "../components/login/Login";
+import SignUp from "../components/signup/SignUp";
+import Profile from "../components/profile/Profile";
 
 class WhiteBoard extends Component {
     constructor() {
@@ -53,13 +56,17 @@ class WhiteBoard extends Component {
                                }}/>
                         <Route path='/' exact
                                render={() => {
-                                   return (<div>
-                                       <CourseHeader addCourse={this.addCourse}/>
-                                       <CourseTitleBar layout="List"/>
-                                       <CourseTable deleteCourse={this.deleteCourse}
-                                                    courses={this.state.courses}/>
-                                   </div>);
-                               }}/>
+                               //     return (<div>
+                               //         <CourseHeader addCourse={this.addCourse}/>
+                               //         <CourseTitleBar layout="List"/>
+                               //         <CourseTable deleteCourse={this.deleteCourse}
+                               //                      courses={this.state.courses}/>
+                               //     </div>);
+                                   return(<div>
+                                       <Profile/>
+                                   </div>)
+
+                                }}/>
                         <Route path="/CourseEditor/:id"
                                exact
                                component={CourseEditor}/>
