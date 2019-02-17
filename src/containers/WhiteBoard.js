@@ -88,26 +88,31 @@ class WhiteBoard extends Component {
                         <Route exact path="/table"
                                render={() => {
 
-                                   if(this.state.loginUser.id===null){
-                                       return <Redirect to="/"/>
-                                   }
+                                   //  if(this.state.loginUser.id===null){
+                                   //      props.history.push("/")
+                                   // }
+
 
                                    this.courseService.findAllCourses().then(
-                                       (courses) => this.setState({courses: courses})
+                                       (courses) => {
+                                           this.setState({courses: courses})
+                                       }
                                    )
+
                                    document.body.style.backgroundColor = "#eeeeee";
                                    return (<div>
                                        <CourseHeader addCourse={this.addCourse}/>
                                        <CourseTitleBar layout="List"/>
                                        <CourseTable deleteCourse={this.deleteCourse}
                                                     courses={this.state.courses}/>
+
                                    </div>);
                                }}/>
                         <Route exact path="/grid"
                                render={() => {
-                                   if(this.state.loginUser.id===null){
-                                       return <Redirect to="/"/>
-                                   }
+                                   // if(this.state.loginUser.id===null){
+                                   //     return <Login {...props}/>
+                                   // }
                                    this.courseService.findAllCourses().then(
                                        (courses) => this.setState({courses: courses})
                                    )
@@ -159,7 +164,7 @@ class WhiteBoard extends Component {
                     </div>
                 </Router>
             </div>
-        );
+        )
     }
 }
 

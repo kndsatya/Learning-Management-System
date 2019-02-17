@@ -5,8 +5,6 @@ import '../components/CourseTable.css'
 import CourseRow from "../components/CourseRow";
 
 
-
-
 const CourseTable = ({courses,deleteCourse}) =>
 
            <div className="container data">

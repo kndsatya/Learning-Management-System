@@ -220,7 +220,7 @@ class Profile extends React.Component {
                         <div className="form-group row">
                             <label className="col-sm-2 col-form-label"></label>
                             <div className="col-sm-10">
-                                <button className="btn btn-primary btn-block"
+                                <button type="button" className="btn btn-primary btn-block"
                                 onClick={()=>{
                                     this.props.history.push("/table")
                                 }}>Course Manager</button>
