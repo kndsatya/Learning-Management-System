@@ -11,7 +11,7 @@ import './CourseTable.css';
 library.add(faGripHorizontal, faFileAlt)
 
 
-    const CourseRow = ({course,deleteCourse})=>
+    const CourseRow = ({course,deleteCourse,author})=>
 
         <div>
 
@@ -23,7 +23,7 @@ library.add(faGripHorizontal, faFileAlt)
 
                     </div>
                     <div className="col-2 d-none d-md-block">
-                        {course.author.username}
+                        {author}
                     </div>
 
                     <div className="col-2 d-none d-md-block">

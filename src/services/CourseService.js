@@ -5,7 +5,7 @@ class CourseService {
     }
 
     addCourse = course => {
-        return fetch("https://boiling-island-41253.herokuapp.com/api/courses",{
+        return fetch("http://localhost:8081/api/courses",{
             credentials:'include',
             method:'post',
             headers:{
@@ -21,23 +21,24 @@ class CourseService {
 
 
     findCourseById = (courseId)=>{
-        let findCourseByIdURL = "https://boiling-island-41253.herokuapp.com/api/courses/"+courseId
+        let findCourseByIdURL = "http://localhost:8081/api/courses/"+courseId
         return fetch(findCourseByIdURL,{
             credentials:'include'
         }).then(response=>{return response.json()})
     }
 
     findAllCourses=()=>{
-        return fetch("https://boiling-island-41253.herokuapp.com/api/courses",{
+        return fetch("http://localhost:8081/api/courses",{
             credentials:'include'
         })
             .then(response=>{
+
                 return response.json()});
     }
 
     deleteCourse = courseId =>{
 
-        let deleteCourseAPI = "https://boiling-island-41253.herokuapp.com/api/courses/" + courseId
+        let deleteCourseAPI = "http://localhost:8081/api/courses/" + courseId
         return fetch(deleteCourseAPI,{
             method:"delete",
             credentials:'include'
