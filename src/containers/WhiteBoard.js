@@ -1,9 +1,9 @@
 import React, {Component} from 'react'
-import CourseTable from '../components/CourseTable'
+import CourseTable from './CourseTable'
 import CourseService from '../services/CourseService'
 import CourseHeader from "../components/CourseHeader";
 import CourseTitleBar from '../components/CourseTitleBar'
-import CourseGrid from '../components/CourseGrid'
+import CourseGrid from './CourseGrid'
 import CourseEditor from './CourseEditor'
 import {BrowserRouter as Router, Route,Redirect} from 'react-router-dom'
 import Login from "./login/Login";
@@ -17,7 +17,7 @@ class WhiteBoard extends Component {
         this.courseService = new CourseService()
         this.userService = new UserService()
         this.state = {
-            courses: [],
+            // courses: [],
             loginUser: {
                 id: "",
                 username: "",
@@ -45,14 +45,6 @@ class WhiteBoard extends Component {
 
         )
 
-        this.courseService.findAllCourses().then(
-            (courses) => {
-                console.log(courses)
-                this.setState({
-                                  courses: courses
-                              })
-            }
-        )
     }
 
     updateLoginUser = (user) => {
@@ -61,22 +53,7 @@ class WhiteBoard extends Component {
                       })
     }
 
-    deleteCourse = (courseId) => {
-        this.courseService.deleteCourse(courseId)
-            .then((course) => this.setState({
-                                                courses: course
-                                            })
-            )
-    }
 
-    addCourse = (course) => {
-
-        this.courseService.addCourse(course).then(
-            (courses) => this.setState({
-                                           courses: courses
-                                       })
-        )
-    }
 
     render() {
 
@@ -87,55 +64,23 @@ class WhiteBoard extends Component {
                     <div>
                         <Route exact path="/table"
                                render={() => {
-
-                                   //  if(this.state.loginUser.id===null){
-                                   //      props.history.push("/")
-                                   // }
-
-
-                                   this.courseService.findAllCourses().then(
-                                       (courses) => {
-                                           this.setState({courses: courses})
-                                       }
-                                   )
-
                                    document.body.style.backgroundColor = "#eeeeee";
                                    return (<div>
-                                       <CourseHeader addCourse={this.addCourse}/>
-                                       <CourseTitleBar layout="List"/>
-                                       <CourseTable deleteCourse={this.deleteCourse}
-                                                    courses={this.state.courses}/>
-
+                                          <CourseTable/>
                                    </div>);
                                }}/>
                         <Route exact path="/grid"
                                render={() => {
-                                   // if(this.state.loginUser.id===null){
-                                   //     return <Login {...props}/>
-                                   // }
-                                   this.courseService.findAllCourses().then(
-                                       (courses) => this.setState({courses: courses})
-                                   )
                                    document.body.style.backgroundColor = "#eeeeee";
-                                   return (<div className="sb-site-container">
-                                       <CourseHeader addCourse={this.addCourse}/>
-                                       <CourseTitleBar layout="Grid"/>
-                                       <CourseGrid deleteCourse={this.deleteCourse}
-                                                   courses={this.state.courses}/>
+                                   return (<div>
+                                       <CourseGrid/>
                                    </div>);
                                }}/>
                         <Route path='/' exact
                                render={(props) => {
-                                   // return (<div>
-                                   //     <CourseHeader addCourse={this.addCourse}/>
-                                   //     <CourseTitleBar layout="List"/>
-                                   //     <CourseTable deleteCourse={this.deleteCourse}
-                                   //                  courses={this.state.courses}/>
-                                   // </div>);
                                    return (<div>
                                        <Login {...props}/>
                                    </div>);
-
                                }}/>
                         <Route path='/profile' exact
                                render={(props) => {

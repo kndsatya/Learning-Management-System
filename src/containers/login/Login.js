@@ -18,6 +18,7 @@ class Login extends React.Component {
     componentDidMount(){
         this.userService.loggedinUser().then(
             (user)=>{
+                //console.log(user)
                 if(user.id!=null){
                     this.props.history.push("/profile")
                 }
