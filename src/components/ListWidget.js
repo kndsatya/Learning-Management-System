@@ -3,6 +3,10 @@ import WidgetTypes from './WidgetTypes'
 
 const ListWidget = ({widget,updateWidget,deleteWidget,index,size,moveUp,moveDown,preview}) =>{
 
+    let itemsOfList=widget.items[0];
+    for(var i=1;i<widget.items.length;i++){
+        itemsOfList = itemsOfList.concat("\n",widget.items[i])
+    }
     const makerContent =  <div className="container row">
         <div className="col-sm-9"><h3>List Widget</h3></div>
         <div className="col-sm-3">
@@ -19,9 +23,10 @@ const ListWidget = ({widget,updateWidget,deleteWidget,index,size,moveUp,moveDown
             <div className="form-group wbdev-input-text">
                     <textarea className="form-control" rows="3" id="list-paragraph"
                               placeholder="Enter one list item per line"
-                              defaultValue={widget.items.map((item)=> item)}
+                              defaultValue={itemsOfList}
                               onChange={(event)=>{
-                                  widget.items = (event.target.value).split("\n");
+                                  widget.items = event.target.value!==""?(event.target.value).split("\n"):
+                                                 [];
                                   updateWidget(widget)
                               }}></textarea>
             </div>
@@ -73,11 +78,10 @@ const ListWidget = ({widget,updateWidget,deleteWidget,index,size,moveUp,moveDown
             <div>
 
                 {
-
                     widget.ordered?(<ol>{
-                        widget.items.map(item=><li>{item}</li>)}
+                        widget.items.map((item,index)=><li key={index}>{item}</li>)}
                     </ol>):(<ul>{
-                        widget.items.map(item=><li>{item}</li>)}</ul>)
+                        widget.items.map((item,index)=><li key={index}>{item}</li>)}</ul>)
                 }
             </div>
         </div>
@@ -91,8 +95,8 @@ const ListWidget = ({widget,updateWidget,deleteWidget,index,size,moveUp,moveDown
                 (<div>
                     {
                         widget.ordered?(<ol>
-                                          {widget.items.map((item)=><li>{item}</li>)}
-                        </ol>):(<ul>{widget.items.map((item)=><li>{item}</li>)}</ul>)
+                                          {widget.items.map((item,index)=><li key={index}>{item}</li>)}
+                        </ol>):(<ul>{widget.items.map((item,index)=><li key={index}>{item}</li>)}</ul>)
                     }
                 </div>)
                        : makerContent

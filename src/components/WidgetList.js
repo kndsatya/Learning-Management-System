@@ -24,7 +24,7 @@ const WidgetList = ({widgets, addWidget, deleteWidget, updateWidget,moveUp,moveD
                 widgets.map((widget,index,widgets) =>{
 
                                 return(<WidgetComponent
-                                    key={widget.id}
+                                    key={widget.widgetId}
                                     updateWidget={updateWidget}
                                     deleteWidget={deleteWidget}
                                     widget={widget}

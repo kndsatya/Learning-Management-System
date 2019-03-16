@@ -15,11 +15,10 @@ const ModuleListItem = ({module,deleteModule,editModule,selectModule,selectedMod
    const activeStyle={
    }
 
-
-    return(<li className={JSON.stringify(module) === JSON.stringify(selectedModule) ? "list-group-item wbdv-label-text wbdv-module  active"
+    return(<li className={module.id === selectedModule.id ? "list-group-item wbdv-label-text wbdv-module  active"
                                              :
                    "list-group-item  wbdv-label-text wbdv-module"} style={
-        JSON.stringify(module) === JSON.stringify(selectedModule) ?activeStyle:moduleStyle
+        module.id === selectedModule.id ?activeStyle:moduleStyle
     }
         onClick={() => selectModule(module)} key={module.id}
       >{module.moduleName}

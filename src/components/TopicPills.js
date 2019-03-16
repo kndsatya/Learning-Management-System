@@ -44,9 +44,8 @@ class TopicPills extends React.Component {
                                           <li key={topic.id} className="nav-item" onClick={() => {
                                               this.props.selectTopic(topic)
                                           }}>
-                                              <a className={JSON.stringify(topic)
-                                                            === JSON.stringify(
-                                                  this.props.selectedTopic)
+                                              <a className={topic.id
+                                                            === this.props.selectedTopic.id
                                                             ? "nav-link active wbdv-button"
                                                             : "nav-link wbdv-button"}
                                                  style={topicStyle}

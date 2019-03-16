@@ -13,8 +13,6 @@ class ModuleList extends React.Component {
 
 
             return (this.props.modules.map((module) =>{
-                // console.log("module",module)
-                // console.log("selectedModule",this.props.selectedModule)
                                                return(<ModuleListItem module={module} key={module.id}
                                                                deleteModule={this.props.deleteModule}
                                                                editModule={this.props.editModule}

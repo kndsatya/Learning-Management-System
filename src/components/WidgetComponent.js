@@ -14,7 +14,7 @@ const WidgetComponent = ({widget, deleteWidget, updateWidget,index,size,moveUp,m
 
 
         {
-            widget.type=='HEADING' &&
+            widget.widgetType=='HEADING' &&
             <HeadingWidget
                 updateWidget={updateWidget}
                  widget={widget}
@@ -24,7 +24,7 @@ const WidgetComponent = ({widget, deleteWidget, updateWidget,index,size,moveUp,m
                 moveUp={moveUp}
                 moveDown={moveDown}
                 preview={preview}/> ||
-            widget.type=='IMAGE'   && <ImageWidget  updateWidget={updateWidget}
+            widget.widgetType=='IMAGE'   && <ImageWidget  updateWidget={updateWidget}
                                                     widget={widget}
                                                     deleteWidget={deleteWidget}
                                                     index={index}
@@ -32,7 +32,7 @@ const WidgetComponent = ({widget, deleteWidget, updateWidget,index,size,moveUp,m
                                                     moveUp={moveUp}
                                                     moveDown={moveDown}
                                                     preview={preview}/> ||
-            widget.type=='PARAGRAPH'   && <ParagraphWidget  updateWidget={updateWidget}
+            widget.widgetType=='PARAGRAPH'   && <ParagraphWidget  updateWidget={updateWidget}
             widget={widget}
             deleteWidget={deleteWidget}
             index={index}
@@ -41,7 +41,7 @@ const WidgetComponent = ({widget, deleteWidget, updateWidget,index,size,moveUp,m
             moveDown={moveDown}
             preview={preview}/> ||
 
-            widget.type=='LIST'   && <ListWidget  updateWidget={updateWidget}
+            widget.widgetType=='LIST'   && <ListWidget  updateWidget={updateWidget}
                                                             widget={widget}
                                                             deleteWidget={deleteWidget}
                                                             index={index}
@@ -49,7 +49,7 @@ const WidgetComponent = ({widget, deleteWidget, updateWidget,index,size,moveUp,m
                                                             moveUp={moveUp}
                                                             moveDown={moveDown}
                                                             preview={preview}/> ||
-            widget.type=='LINK'   && <LinkWidget  updateWidget={updateWidget}
+            widget.widgetType=='LINK'   && <LinkWidget  updateWidget={updateWidget}
                                                     widget={widget}
                                                     deleteWidget={deleteWidget}
                                                     index={index}

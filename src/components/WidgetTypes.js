@@ -20,9 +20,9 @@ const WidgetTypes = ({widget, updateWidget, deleteWidget, index, size, moveUp, m
 
         <select name="heading" onChange={(event) => {
 
-            widget.type = event.target.value
+            widget.widgetType = event.target.value
 
-            switch (widget.type) {
+            switch (widget.widgetType) {
                 case "IMAGE" :
                     widget.src = "https://picsum.photos/200";
 
@@ -54,7 +54,7 @@ const WidgetTypes = ({widget, updateWidget, deleteWidget, index, size, moveUp, m
         }}>
 
             {
-                widget.type === "HEADING" ?
+                widget.widgetType === "HEADING" ?
                 <option value="HEADING" selected>
                     Heading
                 </option> :
@@ -64,7 +64,7 @@ const WidgetTypes = ({widget, updateWidget, deleteWidget, index, size, moveUp, m
             }
 
             {
-                widget.type === "LIST" ?
+                widget.widgetType === "LIST" ?
 
                 <option value="LIST" selected>
                     List
@@ -76,7 +76,7 @@ const WidgetTypes = ({widget, updateWidget, deleteWidget, index, size, moveUp, m
             }
 
             {
-                widget.type === "PARAGRAPH" ?
+                widget.widgetType === "PARAGRAPH" ?
                 <option value="PARAGRAPH" selected>
                     Paragraph
                 </option> : <option value="PARAGRAPH">
@@ -85,7 +85,7 @@ const WidgetTypes = ({widget, updateWidget, deleteWidget, index, size, moveUp, m
             }
 
             {
-                widget.type === "IMAGE" ?
+                widget.widgetType === "IMAGE" ?
 
                 <option value="IMAGE" selected>
                     Image
@@ -95,7 +95,7 @@ const WidgetTypes = ({widget, updateWidget, deleteWidget, index, size, moveUp, m
                 </option>
             }
             {
-                widget.type === "LINK" ?
+                widget.widgetType === "LINK" ?
 
                 <option value="LINK" selected>
                     Link
