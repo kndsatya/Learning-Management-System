@@ -55,10 +55,11 @@ class LessonTabs extends React.Component {
 
                     return(<li key={lesson.id} className="nav-item"
                                     onClick={()=>{this.props.selectLesson(lesson)}}>
-                                    <a className={JSON.stringify(lesson)===
-                                                  JSON.stringify(this.props.selectedLesson)?"nav-link active wbdv-label-text":
+                                    <a className={lesson.id ===
+                                                  this.props.selectedLesson.id?"nav-link active wbdv-label-text":
                                                   "nav-link wbdv-label-text"}
-                                       style={JSON.stringify(lesson)===JSON.stringify(this.props.selectedLesson)?
+                                       style={lesson.id ===
+                                              this.props.selectedLesson.id?
                                                 activeStyle:lessonStyle}
                                        role="btn">{lesson.lessonName}&nbsp;&nbsp;&nbsp;
                                         <FontAwesomeIcon onClick={() => this.props.deleteLesson(lesson.id)}

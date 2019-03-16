@@ -1,6 +1,7 @@
 import React from 'react'
 import EditorHeading from '../components/EditorHeading'
 import CourseService from "../services/CourseService";
+import WidgetService from "../services/WidgetService";
 import ModuleService from "../services/ModuleService";
 import TopicService from "../services/TopicService";
 import LessonService from "../services/LessonService";
@@ -13,11 +14,17 @@ import HeadingWidget from "../components/HeadingWidget";
 import WidgetListContainer from '../containers/WidgetListContainer'
 import './CourseEditor.css'
 import widgetReducer from '../reducers/WidgetReducer'
-import {createStore} from 'redux'
+import {createStore, applyMiddleware} from 'redux'
 import {Provider} from 'react-redux'
+import thunk from 'redux-thunk'
 import UserService from "../services/UserService";
 
-const store = createStore(widgetReducer);
+const initialState = {
+    widgets: [],
+    preview: false
+}
+
+const store = createStore(widgetReducer, initialState);
 
 class CourseEditor extends React.Component {
 
@@ -28,6 +35,7 @@ class CourseEditor extends React.Component {
         this.lessonService = new LessonService()
         this.userService = new UserService()
         this.topicService = new TopicService()
+        this.widgetService = new WidgetService()
         this.courseId = parseInt(props.match.params.id)
         this.state = {
             course: "",
@@ -59,7 +67,6 @@ class CourseEditor extends React.Component {
         this.courseService.findCourseById(this.courseId).then(
             (course) => {
 
-
                 let modules = []
                 let lessons = []
                 let topics = []
@@ -67,7 +74,7 @@ class CourseEditor extends React.Component {
                 let selectedTopic = ""
                 let selectedModule = ""
 
-                if (course.id!==null) {
+                if (course.id !== null) {
                     if (course.modules.length !== 0) {
                         modules = course.modules
                         selectedModule = course.modules[0]
@@ -113,17 +120,15 @@ class CourseEditor extends React.Component {
 
         this.moduleService.createModule(module, this.state.course.id).then((modules) => {
 
-            console.log("Modules from create module",modules)
             if (modules.length === 1) {
                 this.state.selectedModule = modules[0]
             }
 
-            console.log("create module-selected module",this.state.selectedModule)
             document.getElementById("module-input").value = ""
             this.setState({
                               modules: modules,
                               shouldModuleEdit: false,
-                              selectedModule : this.state.selectedModule
+                              selectedModule: this.state.selectedModule
                           })
         })
     }
@@ -137,33 +142,32 @@ class CourseEditor extends React.Component {
             lessonName = document.getElementById("LessonInput").value
         }
         let lesson = {
-            lessonName : lessonName
+            lessonName: lessonName
         }
 
-        this.lessonService.createLesson(this.state.selectedModule.id,lesson).then(
-
-            (lessons)=>{
+        this.lessonService.createLesson(this.state.selectedModule.id, lesson).then(
+            (lessons) => {
 
                 let selectedLesson;
                 if (lessons.length === 1) {
                     selectedLesson = lessons[0]
-                }else{
+                } else {
                     selectedLesson = this.state.selectedLesson
                 }
-                for(var i=0;i<this.state.modules.length;i++){
-                 if(this.state.modules[i].id===this.state.selectedModule.id){
-                     this.state.modules[i].lessons = lessons
-                     this.state.selectedModule.lessons = lessons
-                 }
+                for (var i = 0; i < this.state.modules.length; i++) {
+                    if (this.state.modules[i].id === this.state.selectedModule.id) {
+                        this.state.modules[i].lessons = lessons
+                        this.state.selectedModule.lessons = lessons
+                    }
                 }
                 this.setState({
-                              lessons: lessons,
-                              shouldLessonEdit: false,
-                              selectedLesson: selectedLesson,
-                              modules : this.state.modules,
-                              selectedModule:this.state.selectedModule
-                          })}
-
+                                  lessons: lessons,
+                                  shouldLessonEdit: false,
+                                  selectedLesson: selectedLesson,
+                                  modules: this.state.modules,
+                                  selectedModule: this.state.selectedModule
+                              })
+            }
         )
         document.getElementById("LessonInput").value = ""
     }
@@ -178,55 +182,46 @@ class CourseEditor extends React.Component {
             topicName = document.getElementById("TopicInput").value
         }
         let topic = {
-            topicName : topicName
+            topicName: topicName
         }
 
-        this.topicService.createTopic(this.state.selectedLesson.id,topic).then(
-
-
-            (topics)=>{
+        this.topicService.createTopic(this.state.selectedLesson.id, topic).then(
+            (topics) => {
 
                 let selectedTopic;
                 if (topics.length === 1) {
                     selectedTopic = topics[0]
-                }else{
+                } else {
                     selectedTopic = this.state.selectedTopic
                 }
 
                 console.log(this.state.selectedModule)
-                for(var i=0;i<this.state.lessons.length;i++){
-                       if(this.state.lessons[i].id===this.state.selectedLesson.id){
-                           this.state.lessons[i].topics = topics
-                           this.state.selectedLesson.topics = topics
-                           break;
-                       }
+                for (var i = 0; i < this.state.lessons.length; i++) {
+                    if (this.state.lessons[i].id === this.state.selectedLesson.id) {
+                        this.state.lessons[i].topics = topics
+                        this.state.selectedLesson.topics = topics
+                        break;
+                    }
                 }
 
-
-
-
-
-
-                for(var i=0;i<this.state.modules.length;i++){
-                    if(this.state.modules[i].id===this.state.selectedModule.id){
+                for (var i = 0; i < this.state.modules.length; i++) {
+                    if (this.state.modules[i].id === this.state.selectedModule.id) {
                         this.state.modules[i].lessons = this.state.lessons
                         break;
                     }
                 }
                 this.state.selectedModule.lessons = this.state.lessons
 
-
-
                 this.setState({
                                   topics: topics,
                                   shouldTopicEdit: false,
                                   selectedTopic: selectedTopic,
-                                  lessons : this.state.lessons,
-                                  selectedLesson : this.state.selectedLesson,
-                                  modules : this.state.modules,
-                                  selectedModule : this.state.selectedModule
-                              })}
-
+                                  lessons: this.state.lessons,
+                                  selectedLesson: this.state.selectedLesson,
+                                  modules: this.state.modules,
+                                  selectedModule: this.state.selectedModule
+                              })
+            }
         )
         document.getElementById("TopicInput").value = ""
     }
@@ -236,21 +231,25 @@ class CourseEditor extends React.Component {
         let selectedModule
         this.moduleService.deleteModule(moduleId).then((modules) => {
 
-            if(modules.length!==0){
+            if (modules.length !== 0) {
                 selectedModule = modules[0]
             }
-            if(modules.length==0){
-                this.state.lessons=[]
-                this.state.topics=[]
+            if (modules.length == 0) {
+                this.state.lessons = []
+                this.state.topics = []
+                this.state.selectedLesson=""
+                this.state.selectedTopic=""
             }
             this.setState({
                               modules: modules,
                               shouldModuleEdit: false,
-                              selectedModule:selectedModule,
-                              lessons:this.state.lessons,
-                              topics:this.state.topics
+                              selectedModule: selectedModule,
+                              lessons: this.state.lessons,
+                              topics: this.state.topics,
+                              selectedLesson : this.state.selectedLesson,
+                              selectedTopic : this.state.selectedTopic
                           })
-            if(modules.length!==0){
+            if (modules.length !== 0) {
                 this.selectModule(selectedModule)
             }
         })
@@ -263,19 +262,21 @@ class CourseEditor extends React.Component {
         this.lessonService.deleteLesson(lessonId).then(
             (lessons) => {
 
-                if(lessons.length!==0){
+                if (lessons.length !== 0) {
                     selectedLesson = lessons[0]
                 }
-                if(lessons.length==0){
-                    this.state.topics=[]
+                if (lessons.length == 0) {
+                    this.state.topics = []
+                    this.state.selectedTopic=""
                 }
                 this.setState({
                                   lessons: lessons,
                                   shouldLessonEdit: false,
-                                  selectedLesson:selectedLesson,
-                                  topics:this.state.topics
+                                  selectedLesson: selectedLesson,
+                                  topics: this.state.topics,
+                                  selectedTopic : this.state.selectedTopic
                               })
-                if(lessons.length!==0){
+                if (lessons.length !== 0) {
                     this.selectLesson(selectedLesson)
                 }
             }
@@ -284,19 +285,19 @@ class CourseEditor extends React.Component {
 
     deleteTopic = (topicId) => {
 
-        let selectedTopic
+        let selectedTopic=""
         this.topicService.deleteTopic(topicId).then(
             (topics) => {
 
-                if(topics.length!==0){
+                if (topics.length !== 0) {
                     selectedTopic = topics[0]
                 }
                 this.setState({
                                   topics: topics,
                                   shouldTopicEdit: false,
-                                  selectedTopic:selectedTopic
+                                  selectedTopic: selectedTopic
                               })
-                if(topics.length!==0){
+                if (topics.length !== 0) {
                     this.selectTopic(selectedTopic)
                 }
             }
@@ -352,12 +353,12 @@ class CourseEditor extends React.Component {
 
     updateLesson = () => {
 
-         let newNameOfLesson = document.getElementById("LessonInput").value
+        let newNameOfLesson = document.getElementById("LessonInput").value
         document.getElementById("LessonInput").value = ""
         this.state.selectedLesson.lessonName = newNameOfLesson
-        this.lessonService.updateLesson(this.state.selectedLesson.id,this.state.selectedLesson)
+        this.lessonService.updateLesson(this.state.selectedLesson.id, this.state.selectedLesson)
             .then(
-                ()=>{
+                () => {
                     this.setState({
                                       lessons: this.state.lessons,
                                       shouldLessonEdit: false
@@ -371,9 +372,9 @@ class CourseEditor extends React.Component {
         let newNameOfTopic = document.getElementById("TopicInput").value
         document.getElementById("TopicInput").value = ""
         this.state.selectedTopic.topicName = newNameOfTopic
-        this.topicService.updateTopic(this.state.selectedTopic.id,this.state.selectedTopic)
+        this.topicService.updateTopic(this.state.selectedTopic.id, this.state.selectedTopic)
             .then(
-                ()=>{
+                () => {
                     this.setState({
                                       topics: this.state.topics,
                                       shouldTopicEdit: false
@@ -398,15 +399,15 @@ class CourseEditor extends React.Component {
     }
 
     selectModule = (module) => {
-        let selectedLesson="";
-        let selectedTopic="";
+        let selectedLesson = "";
+        let selectedTopic = "";
         let correspondingLessons = []
         let correspondingTopics = []
 
         this.lessonService.findAllLessons(module.id).then(
             (lessons) => {
                 correspondingLessons = lessons
-                if(correspondingLessons.length!==0) {
+                if (correspondingLessons.length !== 0) {
                     selectedLesson = correspondingLessons[0]
                     correspondingTopics = selectedLesson.topics
                     if (selectedLesson.topics.length !== 0) {
@@ -428,15 +429,15 @@ class CourseEditor extends React.Component {
 
     selectLesson = (lesson) => {
 
-        let selectedTopic="";
+        let selectedTopic = "";
         let correspondingTopics = []
 
         this.topicService.findAllTopics(lesson.id).then(
             (topics) => {
                 correspondingTopics = topics
-                if(correspondingTopics.length!==0) {
-                     selectedTopic = correspondingTopics[0]
-                    }
+                if (correspondingTopics.length !== 0) {
+                    selectedTopic = correspondingTopics[0]
+                }
 
                 this.setState({
 
@@ -461,12 +462,29 @@ class CourseEditor extends React.Component {
             return <div></div>
         }
 
-        // store.dispatch({
-        //                    type: 'FIND_ALL_WIDGETS_FOR_TOPIC',
-        //                    courseService: this.courseService,
-        //                    topicId: this.state.selectedTopic.id,
-        //                    preview:false
-        //                })
+        if(this.state.selectedTopic!==""){
+
+
+            this.widgetService.findWidgets(this.state.selectedTopic.id).then(
+                (widgets) => {
+                    store.dispatch({
+                                       type: 'FIND_ALL_WIDGETS_FOR_TOPIC',
+                                       widgetService: this.widgetService,
+                                       widgets: widgets,
+                                       topicId: this.state.selectedTopic.id,
+                                       preview: false
+                                   })
+                }
+            )
+        }else{
+            store.dispatch({
+                               type: 'FIND_ALL_WIDGETS_FOR_TOPIC',
+                               widgetService: this.widgetService,
+                               widgets: [],
+                               topicId: this.state.selectedTopic.id,
+                               preview: false
+                           })
+        }
 
 
         return (
@@ -510,14 +528,14 @@ class CourseEditor extends React.Component {
                                             selectedTopic={this.state.selectedTopic}/>
                             </div>
 
-                            {/*<div>*/}
-                            {/*<Provider store={store}>*/}
-                            {/*<WidgetListContainer/>*/}
-                            {/*</Provider>*/}
-                            {/*</div>*/}
-                            {this.state.topics.length!==0?<div>
-                                <HeadingWidget/>
-                            </div>:<div></div>}
+                            {
+                                this.state.selectedTopic===""?<div></div>:<div>
+                                    <Provider store={store}>
+                                        <WidgetListContainer/>
+                                    </Provider>
+                                </div>
+                            }
+
                         </div>
                     </div>
                 </div>

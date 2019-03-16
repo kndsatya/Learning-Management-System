@@ -1,22 +1,4 @@
-// const widgets =
-//     {
-//         widgets: [
-//             {
-//                 id: 123,
-//                 title: 'Widget 1',
-//                 type: 'HEADING',
-//                 text: 'This is a heading',
-//                 size: 2
-//             },
-//             {
-//                 id: 234,
-//                 title: 'Widget 2',
-//                 type: 'IMAGE'
-//             }
-//         ]
-//     }
-
-import CourseService from "../services/CourseService";
+import WidgetService from "../services/WidgetService";
 
 const widgetReducer = (state, action) => {
     switch(action.type) {
@@ -24,20 +6,21 @@ const widgetReducer = (state, action) => {
         case 'DELETE_WIDGET':
 
             return {
-                 widgets: state.widgets.filter(widget => widget.id !== action.widget.id),
-                courseService: state.courseService,
+
+                widgets: state.widgets.filter(widget => widget.widgetId !== action.widget.widgetId),
+                widgetService: state.widgetService,
                 topicId: state.topicId,
                 preview: state.preview
             }
 
         case 'CREATE_WIDGET':
 
-
             const widget = {
-                id: Math.random(),
-                type: 'HEADING',
+                widgetId : Math.floor((Math.random() * 1000000) + 1),
+                                widgetType: 'HEADING',
                 text: 'New Widget',
-                size: 1
+                size: 1,
+                order:0
             }
 
             return {
@@ -45,34 +28,36 @@ const widgetReducer = (state, action) => {
                     ...state.widgets,
                     widget
                 ],
-                courseService: state.courseService,
+                widgetService: state.widgetService,
                 topicId: state.topicId,
                 preview: state.preview
             }
 
         case 'UPDATE_WIDGET':
             // replace the old widget with the new widget
+
             return {
                 widgets: state.widgets.map(widget =>
-                                               widget.id === action.widget.id ? action.widget : widget
+                                               widget.widgetId === action.widget.widgetId ? action.widget : widget
                 ),
-                courseService: state.courseService,
+                widgetService: state.widgetService,
                 topicId: state.topicId,
                 preview: state.preview
 
             }
 
         case 'FIND_WIDGET' : return{
-            widget : state.widgets.find(widget => widget.id === action.widget.id),
-            courseService: state.courseService,
+            widget : state.widgets.find(widget => widget.widgetId === action.widget.widgetId),
+            widgetService: state.widgetService,
             topicId: state.topicId,
             preview: state.preview
         }
 
         case 'FIND_ALL_WIDGETS_FOR_TOPIC' :
+
             return {
-            widgets : action.courseService.findWidgets(action.topicId),
-            courseService : action.courseService,
+            widgets : action.widgets,
+            widgetService : action.widgetService,
             topicId: action.topicId,
             preview:action.preview
         }
@@ -84,7 +69,7 @@ const widgetReducer = (state, action) => {
             state.widgets[index] = upperWidget
             return {
                widgets:[...state.widgets],
-                courseService: state.courseService,
+                widgetService: state.widgetService,
                 topicId: state.topicId,
                 preview: state.preview
             }
@@ -96,7 +81,7 @@ const widgetReducer = (state, action) => {
             state.widgets[downIndex] = downWidget
             return {
                 widgets:[...state.widgets],
-                courseService: state.courseService,
+                widgetService: state.widgetService,
                 topicId: state.topicId,
                 preview: state.preview
             }
@@ -107,13 +92,23 @@ const widgetReducer = (state, action) => {
             return{
                   preview:preview,
                   widgets: [...state.widgets],
-                courseService: state.courseService,
+                widgetService: state.widgetService,
                 topicId: state.topicId
             }
+
         case 'SAVE':
+            state.widgetService.deleteWidgetsOfTopic(state.topicId).then(
+                ()=>{
+                        state.widgets.map((widget,index)=>{
+                        widget.orderNumber = index;
+                        state.widgetService.createWidget(state.topicId,widget)
+                    })
+                }
+            )
                return {
-                     widgets: state.courseService.saveWidgets(state.topicId,state.widgets),
-                     courseService: state.courseService,
+
+                     widgets: state.widgets,
+                     widgetService: state.widgetService,
                      topicId: state.topicId,
                      preview : state.preview
                }
