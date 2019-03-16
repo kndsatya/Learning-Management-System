@@ -6,7 +6,7 @@ class TopicService{
 
 
     createTopic = (lessonId,topic)=>{
-        const URL = "http://localhost:8081/api/lesson/"+lessonId+"/topic"
+        const URL = "https://fast-mesa-67485.herokuapp.com/api/lesson/"+lessonId+"/topic"
         return fetch(URL,{
             credentials:'include',
             method:'post',
@@ -21,7 +21,7 @@ class TopicService{
     }
 
     deleteTopic = (topicId) =>{
-        const URL = "http://localhost:8081/api/topic/"+topicId
+        const URL = "https://fast-mesa-67485.herokuapp.com/api/topic/"+topicId
         return fetch(URL,{
                          credentials:'include',
                          method:"delete"
@@ -33,7 +33,7 @@ class TopicService{
     }
 
     updateTopic = (topicId,topic) => {
-        const URL = "http://localhost:8081/api/topic/"+topicId
+        const URL = "https://fast-mesa-67485.herokuapp.com/api/topic/"+topicId
         return fetch(URL,{
             method:'put',
             body: JSON.stringify(topic),
@@ -46,7 +46,7 @@ class TopicService{
     }
 
     findAllTopics = (topicId)=>{
-        const URL="http://localhost:8081/api/lesson/"+topicId+"/topic"
+        const URL="https://fast-mesa-67485.herokuapp.com/api/lesson/"+topicId+"/topic"
         return fetch(URL,{
             credentials:'include'
         }).then(response=>response.json())

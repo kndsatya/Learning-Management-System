@@ -6,7 +6,7 @@ class CourseService {
     }
 
     addCourse = course => {
-        return fetch("http://localhost:8081/api/courses",{
+        return fetch("https://fast-mesa-67485.herokuapp.com/api/courses",{
             credentials:'include',
             method:'post',
             headers:{
@@ -22,14 +22,14 @@ class CourseService {
 
 
     findCourseById = (courseId)=>{
-        let findCourseByIdURL = "http://localhost:8081/api/courses/"+courseId
+        let findCourseByIdURL = "https://fast-mesa-67485.herokuapp.com/api/courses/"+courseId
         return fetch(findCourseByIdURL,{
             credentials:'include'
         }).then(response=>{return response.json()})
     }
 
     findAllCourses=()=>{
-        return fetch("http://localhost:8081/api/courses",{
+        return fetch("https://fast-mesa-67485.herokuapp.com/api/courses",{
             credentials:'include'
         })
             .then(response=>{
@@ -39,7 +39,7 @@ class CourseService {
 
     deleteCourse = courseId =>{
 
-        let deleteCourseAPI = "http://localhost:8081/api/courses/" + courseId
+        let deleteCourseAPI = "https://fast-mesa-67485.herokuapp.com/api/courses/" + courseId
         return fetch(deleteCourseAPI,{
             method:"delete",
             credentials:'include'

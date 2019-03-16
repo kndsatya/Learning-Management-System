@@ -6,7 +6,7 @@ class ParagraphWidgetService{
 
     createWidget = (topicId, widget) => {
 
-        return fetch("http://localhost:8081/api/topic/"+topicId+"/paragraph/widget",{
+        return fetch("https://fast-mesa-67485.herokuapp.com/api/topic/"+topicId+"/paragraph/widget",{
             credentials:'include',
             method:'post',
             headers:{
@@ -21,7 +21,7 @@ class ParagraphWidgetService{
 
     findWidgets=(topicId)=>{
 
-        return fetch("http://localhost:8081/api/topic/"+topicId+"/paragraph/widget",{
+        return fetch("https://fast-mesa-67485.herokuapp.com/api/topic/"+topicId+"/paragraph/widget",{
             credentials:'include'
         })
             .then(response=>{
@@ -31,7 +31,7 @@ class ParagraphWidgetService{
 
 
     findWidget=(widgetId)=>{
-        let findCourseByIdURL = "http://localhost:8081/api/paragraph/widget/"+widgetId
+        let findCourseByIdURL = "https://fast-mesa-67485.herokuapp.com/api/paragraph/widget/"+widgetId
         return fetch(findCourseByIdURL,{
             credentials:'include'
         }).then(response=>{return response.json()})
@@ -40,7 +40,7 @@ class ParagraphWidgetService{
 
     updateWidget=(widgetId, updatedWidget)=>{
 
-        const URL = "http://localhost:8081/api/paragraph/widget/"+widgetId
+        const URL = "https://fast-mesa-67485.herokuapp.com/api/paragraph/widget/"+widgetId
         return fetch(URL,{
             method:'put',
             body: JSON.stringify(updatedWidget),
@@ -54,7 +54,7 @@ class ParagraphWidgetService{
 
     deleteWidget = (widgetId) =>{
 
-        const URL = "http://localhost:8081/api/paragraph/widget/"+widgetId
+        const URL = "https://fast-mesa-67485.herokuapp.com/api/paragraph/widget/"+widgetId
         return fetch(URL,{
                          credentials:'include',
                          method:"delete"

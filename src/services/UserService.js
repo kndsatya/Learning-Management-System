@@ -5,7 +5,7 @@ class UserService{
     }
 
     register=(user)=>{
-          return fetch("http://localhost:8081/api/register",{
+          return fetch("https://fast-mesa-67485.herokuapp.com/api/register",{
                method:'post',
                body: JSON.stringify(user),
               credentials:'include',
@@ -19,7 +19,7 @@ class UserService{
     }
 
     findAllUsers=()=>{
-       return fetch("http://localhost:8081/api/users",{
+       return fetch("https://fast-mesa-67485.herokuapp.com/api/users",{
            credentials:'include'
        })
             .then(response=>{
@@ -27,7 +27,7 @@ class UserService{
     }
 
     loggedinUser = ()=>{
-        return fetch("http://localhost:8081/api/profile",{
+        return fetch("https://fast-mesa-67485.herokuapp.com/api/profile",{
             credentials:'include'
         })
             .then(response=>{
@@ -36,7 +36,7 @@ class UserService{
     }
 
     updateUser=(user)=>{
-        return fetch("http://localhost:8081/api/update",{
+        return fetch("https://fast-mesa-67485.herokuapp.com/api/update",{
             method:'put',
             body: JSON.stringify(user),
             credentials:'include',
@@ -50,14 +50,14 @@ class UserService{
     }
 
     logout=()=>{
-        return fetch("http://localhost:8081/api/logout",{
+        return fetch("https://fast-mesa-67485.herokuapp.com/api/logout",{
             credentials:'include'
         })
     }
 
     loginUser = (user) => {
 
-        return fetch("http://localhost:8081/api/login",{
+        return fetch("https://fast-mesa-67485.herokuapp.com/api/login",{
             method:'post',
             body: JSON.stringify(user),
             credentials:'include',

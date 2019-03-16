@@ -6,7 +6,7 @@ class LinkWidgetService{
 
     createWidget = (topicId, widget) => {
 
-        return fetch("http://localhost:8081/api/topic/"+topicId+"/link/widget",{
+        return fetch("https://fast-mesa-67485.herokuapp.com/api/topic/"+topicId+"/link/widget",{
             credentials:'include',
             method:'post',
             headers:{
@@ -21,7 +21,7 @@ class LinkWidgetService{
 
     findWidgets=(topicId)=>{
 
-        return fetch("http://localhost:8081/api/topic/"+topicId+"/link/widget",{
+        return fetch("https://fast-mesa-67485.herokuapp.com/api/topic/"+topicId+"/link/widget",{
             credentials:'include'
         })
             .then(response=>{
@@ -31,7 +31,7 @@ class LinkWidgetService{
 
 
     findWidget=(widgetId)=>{
-        let findCourseByIdURL = "http://localhost:8081/api/link/widget/"+widgetId
+        let findCourseByIdURL = "https://fast-mesa-67485.herokuapp.com/api/link/widget/"+widgetId
         return fetch(findCourseByIdURL,{
             credentials:'include'
         }).then(response=>{return response.json()})
@@ -40,7 +40,7 @@ class LinkWidgetService{
 
     updateWidget=(widgetId, updatedWidget)=>{
 
-        const URL = "http://localhost:8081/api/link/widget/"+widgetId
+        const URL = "https://fast-mesa-67485.herokuapp.com/api/link/widget/"+widgetId
         return fetch(URL,{
             method:'put',
             body: JSON.stringify(updatedWidget),
@@ -54,7 +54,7 @@ class LinkWidgetService{
 
     deleteWidget = (widgetId) =>{
 
-        const URL = "http://localhost:8081/api/link/widget/"+widgetId
+        const URL = "https://fast-mesa-67485.herokuapp.com/api/link/widget/"+widgetId
         return fetch(URL,{
                          credentials:'include',
                          method:"delete"

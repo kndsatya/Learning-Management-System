@@ -5,7 +5,7 @@ class ModuleService{
     }
 
     createModule = (module,courseId)=>{
-        const URL = "http://localhost:8081/api/courses/"+courseId+"/modules"
+        const URL = "https://fast-mesa-67485.herokuapp.com/api/courses/"+courseId+"/modules"
         return fetch(URL,{
             credentials:'include',
             method:'post',
@@ -20,7 +20,7 @@ class ModuleService{
     }
 
     deleteModule = (moduleId) =>{
-            const URL = "http://localhost:8081/api/modules/"+moduleId
+            const URL = "https://fast-mesa-67485.herokuapp.com/api/modules/"+moduleId
             return fetch(URL,{
                            credentials:'include',
                            method:"delete"
@@ -32,7 +32,7 @@ class ModuleService{
     }
 
     updateModule = (moduleId,module) => {
-        const URL = "http://localhost:8081/api/modules/"+moduleId
+        const URL = "https://fast-mesa-67485.herokuapp.com/api/modules/"+moduleId
         return fetch(URL,{
             method:'put',
             body: JSON.stringify(module),

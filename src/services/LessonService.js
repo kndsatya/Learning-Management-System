@@ -6,7 +6,7 @@ class LessonService{
 
 
     createLesson = (moduleId,lesson)=>{
-        const URL = "http://localhost:8081/api/module/"+moduleId+"/lesson"
+        const URL = "https://fast-mesa-67485.herokuapp.com/api/module/"+moduleId+"/lesson"
         return fetch(URL,{
             credentials:'include',
             method:'post',
@@ -21,7 +21,7 @@ class LessonService{
     }
 
     deleteLesson = (lessonId) =>{
-        const URL = "http://localhost:8081/api/lesson/"+lessonId
+        const URL = "https://fast-mesa-67485.herokuapp.com/api/lesson/"+lessonId
         return fetch(URL,{
                          credentials:'include',
                          method:"delete"
@@ -33,7 +33,7 @@ class LessonService{
     }
 
     updateLesson = (lessonId,lesson) => {
-        const URL = "http://localhost:8081/api/lesson/"+lessonId
+        const URL = "https://fast-mesa-67485.herokuapp.com/api/lesson/"+lessonId
         return fetch(URL,{
             method:'put',
             body: JSON.stringify(lesson),
@@ -46,7 +46,7 @@ class LessonService{
     }
 
     findAllLessons = (moduleId)=>{
-        const URL="http://localhost:8081/api/module/"+moduleId+"/lesson"
+        const URL="https://fast-mesa-67485.herokuapp.com/api/module/"+moduleId+"/lesson"
         return fetch(URL,{
             credentials:'include'
         }).then(response=>response.json())
