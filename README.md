@@ -67,7 +67,8 @@ This section has moved here: https://facebook.github.io/create-react-app/docs/de
 
 This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
 
-###Learning Management System
+### Learning Management System
 
 • Developed a ‘Learning Management System’ to help course staff create course content using flexible widgets provided through the application and students can register to access those courses.
+
 • Technologies: React.js, React-Redux, Bootstrap, RESTful, JSON, Java, Oracle DB.
