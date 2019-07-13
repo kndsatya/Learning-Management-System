@@ -1,3 +1,10 @@
+
+### Learning Management System
+
+• Developed a ‘Learning Management System’ to help course staff create course content using flexible widgets provided through the application and students can register to access those courses.
+
+• Technologies: React.js, React-Redux, Bootstrap, RESTful, JSON, Java, Oracle DB.
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
@@ -66,9 +73,3 @@ This section has moved here: https://facebook.github.io/create-react-app/docs/de
 ### `npm run build` fails to minify
 
 This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
-
-### Learning Management System
-
-• Developed a ‘Learning Management System’ to help course staff create course content using flexible widgets provided through the application and students can register to access those courses.
-
-• Technologies: React.js, React-Redux, Bootstrap, RESTful, JSON, Java, Oracle DB.
